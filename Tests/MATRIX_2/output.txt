@@ -1,0 +1,25 @@
+Ticks, #TotalTests, #TestsSuccessful
+Tick 1, 2, 0
+Tick 2, 4, 0
+0,0: TestBlock.CODE = 0  actual=129.000000
+0,0: TestBlock._TP = FALSE  actual=1.000000
+0,0: TestBlock.Y1 = TRUE  actual=0.000000
+0,0: TestBlock.Y2 = FALSE  actual=1.000000
+0,0: TestBlock.Y3 = FALSE  actual=0.000000
+0,0: TestBlock.Y4 = FALSE  actual=0.000000
+1,0: TestBlock.CODE = 0  actual=0.000000
+1,0: TestBlock._TP = FALSE  actual=0.000000
+1,0: TestBlock.Y1 = TRUE  actual=0.000000
+1,0: TestBlock.Y2 = FALSE  actual=1.000000
+1,0: TestBlock.Y3 = FALSE  actual=0.000000
+1,0: TestBlock.Y4 = FALSE  actual=0.000000
+Tick 3, 6, 0
+Tick 4, 6, 0
+Tick 5, 6, 0
+Tick 6, 6, 0
+Tick 7, 6, 0
+Tick 8, 6, 0
+Tick 9, 6, 0
+Tick 10, 6, 0
+Program ended.
+Statement coverage for MATRIX: 85.29411764705883%

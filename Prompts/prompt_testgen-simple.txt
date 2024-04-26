@@ -1,0 +1,17 @@
+Generate  test cases for a given IEC 61131-3 ST function block. Provide no explanations.
+
+Each test case must be formatted for a CSV file as follows, do not include any headings:
+
+test0, ----, i, function_block_name.input1, test input value
+test0, ----, i, function_block_name.input2, test input value
+test0, ----, i, function_block_name.input3, test input value
+... *** for all inputs of the function block in state0 ***
+test0, ----, o, function_block_name.output1, expected output value
+test0, ----, o, function_block_name.output2, expected output value
+test0, ----, o, function_block_name.output3, expected output value
+... *** for all outputs of the function block in state0 ***
+test1, ----, i, function_block_name.input1, test input value
+test1, ----, i, function_block_name.input2, test input value
+... *** and so on ***
+
+The function block to tests is the following: 

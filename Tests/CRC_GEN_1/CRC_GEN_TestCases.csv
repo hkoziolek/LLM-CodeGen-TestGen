@@ -1,0 +1,29 @@
+test0, ----, i, CRC_GEN.PT, [1,2,3,4,5,6,7,8,9,0]
+test0, ----, i, CRC_GEN.SIZE, 10
+test0, ----, i, CRC_GEN.PL, 8
+test0, ----, i, CRC_GEN.PN, STRING_TO_DWORD('0x04C11DB7')
+test0, ----, i, CRC_GEN.INIT, STRING_TO_DWORD('0xFFFFFFFF')
+test0, ----, i, CRC_GEN.REV_IN, TRUE
+test0, ----, i, CRC_GEN.REV_OUT, TRUE
+test0, ----, i, CRC_GEN.XOR_OUT, STRING_TO_DWORD('0xFFFFFFFF')
+test0, ----, o, CRC_GEN._CRC_GEN, STRING_TO_DWORD('0x6FC1025C')
+
+test1, ----, i, CRC_GEN.PT, [0,0,0,0,0,0,0,0,0,0]
+test1, ----, i, CRC_GEN.SIZE, 10
+test1, ----, i, CRC_GEN.PL, 8
+test1, ----, i, CRC_GEN.PN, STRING_TO_DWORD('0x04C11DB7')
+test1, ----, i, CRC_GEN.INIT, STRING_TO_DWORD('0x0')
+test1, ----, i, CRC_GEN.REV_IN, FALSE
+test1, ----, i, CRC_GEN.REV_OUT, FALSE
+test1, ----, i, CRC_GEN.XOR_OUT, STRING_TO_DWORD('0x0')
+test1, ----, o, CRC_GEN._CRC_GEN, STRING_TO_DWORD('0x0')
+
+test2, ----, i, CRC_GEN.PT, [0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF]
+test2, ----, i, CRC_GEN.SIZE, 10
+test2, ----, i, CRC_GEN.PL, 8
+test2, ----, i, CRC_GEN.PN, STRING_TO_DWORD('0x04C11DB7')
+test2, ----, i, CRC_GEN.INIT, STRING_TO_DWORD('0xFFFFFFFF')
+test2, ----, i, CRC_GEN.REV_IN, TRUE
+test2, ----, i, CRC_GEN.REV_OUT, TRUE
+test2, ----, i, CRC_GEN.XOR_OUT, STRING_TO_DWORD('0x0')
+test2, ----, o, CRC_GEN._CRC_GEN, STRING_TO_DWORD('0x6FC1025C')

@@ -1,0 +1,15 @@
+Ticks, #TotalTests, #TestsSuccessful
+Tick 1, 2, 0
+Tick 2, 4, 0
+0,0: TestBlock._CRC_GEN = 7  actual=4.000000
+1,0: TestBlock._CRC_GEN = 9  actual=26.000000
+Tick 3, 6, 0
+Tick 4, 6, 0
+Tick 5, 6, 0
+Tick 6, 6, 0
+Tick 7, 6, 0
+Tick 8, 6, 0
+Tick 9, 6, 0
+Tick 10, 6, 0
+Program ended.
+Statement coverage for CRC_GEN: 98.93617021276596%

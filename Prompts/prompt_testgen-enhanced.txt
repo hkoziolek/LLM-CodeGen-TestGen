@@ -1,0 +1,32 @@
+Generate an extensive collection of test cases to systematically test a given IEC 61131-3 ST function block.
+Choose test cases that achieve statement coverage and test boundary cases.
+If the function block retains internal state between execution cycles, generate for each test case a set of states. Otherwise keep each test case to a single state.
+Provide adequate expected ouputs for each test case. If necessary, use a reference function to compute the expected outputs.
+Do not generate test case inputs outside of the boundaries of their data types. 
+Provide no explanations.
+
+Each test case must be formatted for a CSV file as follows, do not include any headings:
+
+test0, state0, i, function_block_name.input1, test input value
+test0, state0, i, function_block_name.input2, test input value
+test0, state0, i, function_block_name.input3, test input value
+... *** for all inputs of the function block in state0 ***
+test0, state0, o, function_block_name.output1, expected output value
+test0, state0, o, function_block_name.output2, expected output value
+test0, state0, o, function_block_name.output3, expected output value
+... *** for all outputs of the function block in state0 ***
+test0, state1, i, function_block_name.input1, test input value
+test0, state1, i, function_block_name.input2, test input value
+test0, state1, i, function_block_name.input3, test input value
+... *** for all inputs of the function block in state1 ***
+test0, state1, o, function_block_name.output1, expected output value
+test0, state1, o, function_block_name.output2, expected output value
+test0, state1, o, function_block_name.output3, expected output value
+... *** for all outputs of the function block in state1 ***
+... *** for all states of test0 ***
+test1, state0, i, function_block_name.input1, test input value
+test1, state0, i, function_block_name.input2, test input value
+... *** and so on ***
+
+
+The function block to tests is the following: 

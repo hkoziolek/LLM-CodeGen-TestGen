@@ -1,0 +1,31 @@
+Ticks, #TotalTests, #TestsSuccessful
+Tick 1, 18, 0
+Tick 2, 36, 0
+0,0: TestBlock.HexString = '0'  actual=0
+1,0: TestBlock.HexString = '1'  actual=1
+2,0: TestBlock.HexString = 'A'  actual=A
+3,0: TestBlock.HexString = 'F'  actual=F
+4,0: TestBlock.HexString = '10'  actual=10
+5,0: TestBlock.HexString = 'FF'  actual=FF
+6,0: TestBlock.HexString = 'FFF'  actual=FFF
+7,0: TestBlock.HexString = '7FFF'  actual=7FFF
+8,0: TestBlock.HexString = '8000'  actual=8000
+9,0: TestBlock.HexString = 'FFFF'  actual=FFFF
+10,0: TestBlock.HexString = '8000'  actual=0
+11,0: TestBlock.HexString = 'FFFFFFFF'  actual=
+12,0: TestBlock.HexString = 'FFFFFFF0'  actual=0
+13,0: TestBlock.HexString = 'FFFFFF01'  actual=
+14,0: TestBlock.HexString = 'FFFFF001'  actual=
+15,0: TestBlock.HexString = 'FFFF8001'  actual=
+16,0: TestBlock.HexString = 'FFFF8000'  actual=0
+17,0: TestBlock.HexString = 'FFFF0001'  actual=
+Tick 3, 54, 18
+Tick 4, 54, 18
+Tick 5, 54, 18
+Tick 6, 54, 18
+Tick 7, 54, 18
+Tick 8, 54, 18
+Tick 9, 54, 18
+Tick 10, 54, 18
+Program ended.
+Statement coverage for DEC_TO_HEX: 100.0%

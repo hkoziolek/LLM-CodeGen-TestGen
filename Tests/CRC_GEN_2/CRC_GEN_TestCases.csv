@@ -1,0 +1,39 @@
+test0, state0, i, CRC_GEN.PT, ARRAY [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+test0, state0, i, CRC_GEN.SIZE, 10
+test0, state0, i, CRC_GEN.PL, 3
+test0, state0, i, CRC_GEN.PN, 2
+test0, state0, i, CRC_GEN.INIT, 1
+test0, state0, i, CRC_GEN.REV_IN, FALSE
+test0, state0, i, CRC_GEN.REV_OUT, TRUE
+test0, state0, i, CRC_GEN.XOR_OUT, 5
+test0, state0, o, CRC_GEN._CRC_GEN, 7
+
+test0, state1, i, CRC_GEN.PT, ARRAY [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+test0, state1, i, CRC_GEN.SIZE, 11
+test0, state1, i, CRC_GEN.PL, 4
+test0, state1, i, CRC_GEN.PN, 3
+test0, state1, i, CRC_GEN.INIT, 2
+test0, state1, i, CRC_GEN.REV_IN, TRUE
+test0, state1, i, CRC_GEN.REV_OUT, FALSE
+test0, state1, i, CRC_GEN.XOR_OUT, 6
+test0, state1, o, CRC_GEN._CRC_GEN, 8
+
+test1, state0, i, CRC_GEN.PT, ARRAY [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+test1, state0, i, CRC_GEN.SIZE, 10
+test1, state0, i, CRC_GEN.PL, 5
+test1, state0, i, CRC_GEN.PN, 4
+test1, state0, i, CRC_GEN.INIT, 3
+test1, state0, i, CRC_GEN.REV_IN, FALSE
+test1, state0, i, CRC_GEN.REV_OUT, TRUE
+test1, state0, i, CRC_GEN.XOR_OUT, 7
+test1, state0, o, CRC_GEN._CRC_GEN, 9
+
+test1, state1, i, CRC_GEN.PT, ARRAY [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+test1, state1, i, CRC_GEN.SIZE, 10
+test1, state1, i, CRC_GEN.PL, 6
+test1, state1, i, CRC_GEN.PN, 5
+test1, state1, i, CRC_GEN.INIT, 4
+test1, state1, i, CRC_GEN.REV_IN, TRUE
+test1, state1, i, CRC_GEN.REV_OUT, FALSE
+test1, state1, i, CRC_GEN.XOR_OUT, 8
+test1, state1, o, CRC_GEN._CRC_GEN, 10

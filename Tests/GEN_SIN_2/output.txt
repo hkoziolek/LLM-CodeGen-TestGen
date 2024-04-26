@@ -1,0 +1,21 @@
+Ticks, #TotalTests, #TestsSuccessful
+Tick 1, 3, 0
+Tick 2, 6, 0
+0,0: TestBlock.Q = TRUE  actual=1.000000
+0,0: TestBlock.OUT = 1.5  actual=1.087785
+1,0: TestBlock.Q = TRUE  actual=0.000000
+1,0: TestBlock.OUT = 1.5  actual=1.000000
+2,0: TestBlock.Q = TRUE  actual=1.000000
+2,0: TestBlock.OUT = 0.0  actual=0.000000
+Tick 3, 9, 0
+2,1: TestBlock.Q = FALSE  actual=1.000000
+2,1: TestBlock.OUT = 0.0  actual=0.000000
+Tick 4, 10, 1
+Tick 5, 10, 1
+Tick 6, 10, 1
+Tick 7, 10, 1
+Tick 8, 10, 1
+Tick 9, 10, 1
+Tick 10, 10, 1
+Program ended.
+Statement coverage for GEN_SIN: 100.0%

@@ -1,0 +1,43 @@
+test0, ----, i, TRAFFIC_CTRL.PedestrianButton1, FALSE
+test0, ----, i, TRAFFIC_CTRL.PedestrianButton2, FALSE
+test0, ----, o, TRAFFIC_CTRL.NorthSouthRed, FALSE
+test0, ----, o, TRAFFIC_CTRL.NorthSouthYellow, FALSE
+test0, ----, o, TRAFFIC_CTRL.NorthSouthGreen, TRUE
+test0, ----, o, TRAFFIC_CTRL.EastWestRed, TRUE
+test0, ----, o, TRAFFIC_CTRL.EastWestYellow, FALSE
+test0, ----, o, TRAFFIC_CTRL.EastWestGreen, FALSE
+test0, ----, o, TRAFFIC_CTRL.PedestrianLight1, FALSE
+test0, ----, o, TRAFFIC_CTRL.PedestrianLight2, FALSE
+
+test1, ----, i, TRAFFIC_CTRL.PedestrianButton1, TRUE
+test1, ----, i, TRAFFIC_CTRL.PedestrianButton2, FALSE
+test1, ----, o, TRAFFIC_CTRL.NorthSouthRed, FALSE
+test1, ----, o, TRAFFIC_CTRL.NorthSouthYellow, TRUE
+test1, ----, o, TRAFFIC_CTRL.NorthSouthGreen, FALSE
+test1, ----, o, TRAFFIC_CTRL.EastWestRed, TRUE
+test1, ----, o, TRAFFIC_CTRL.EastWestYellow, FALSE
+test1, ----, o, TRAFFIC_CTRL.EastWestGreen, FALSE
+test1, ----, o, TRAFFIC_CTRL.PedestrianLight1, FALSE
+test1, ----, o, TRAFFIC_CTRL.PedestrianLight2, FALSE
+
+test2, ----, i, TRAFFIC_CTRL.PedestrianButton1, FALSE
+test2, ----, i, TRAFFIC_CTRL.PedestrianButton2, TRUE
+test2, ----, o, TRAFFIC_CTRL.NorthSouthRed, TRUE
+test2, ----, o, TRAFFIC_CTRL.NorthSouthYellow, FALSE
+test2, ----, o, TRAFFIC_CTRL.NorthSouthGreen, FALSE
+test2, ----, o, TRAFFIC_CTRL.EastWestRed, TRUE
+test2, ----, o, TRAFFIC_CTRL.EastWestYellow, FALSE
+test2, ----, o, TRAFFIC_CTRL.EastWestGreen, TRUE
+test2, ----, o, TRAFFIC_CTRL.PedestrianLight1, FALSE
+test2, ----, o, TRAFFIC_CTRL.PedestrianLight2, TRUE
+
+test3, ----, i, TRAFFIC_CTRL.PedestrianButton1, TRUE
+test3, ----, i, TRAFFIC_CTRL.PedestrianButton2, TRUE
+test3, ----, o, TRAFFIC_CTRL.NorthSouthRed, TRUE
+test3, ----, o, TRAFFIC_CTRL.NorthSouthYellow, FALSE
+test3, ----, o, TRAFFIC_CTRL.NorthSouthGreen, FALSE
+test3, ----, o, TRAFFIC_CTRL.EastWestRed, TRUE
+test3, ----, o, TRAFFIC_CTRL.EastWestYellow, TRUE
+test3, ----, o, TRAFFIC_CTRL.EastWestGreen, FALSE
+test3, ----, o, TRAFFIC_CTRL.PedestrianLight1, TRUE
+test3, ----, o, TRAFFIC_CTRL.PedestrianLight2, TRUE

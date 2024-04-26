@@ -1,0 +1,29 @@
+test0, ----, i, TOOL_CHANGER.ToolChangeRequired, TRUE
+test0, ----, i, TOOL_CHANGER.ToolCarouselPosition, 1
+test0, ----, i, TOOL_CHANGER.DesiredToolNumber, 2
+test0, ----, o, TOOL_CHANGER.RotateCarousel, TRUE
+test0, ----, o, TOOL_CHANGER.LockTool, FALSE
+
+test1, ----, i, TOOL_CHANGER.ToolChangeRequired, TRUE
+test1, ----, i, TOOL_CHANGER.ToolCarouselPosition, 2
+test1, ----, i, TOOL_CHANGER.DesiredToolNumber, 2
+test1, ----, o, TOOL_CHANGER.RotateCarousel, FALSE
+test1, ----, o, TOOL_CHANGER.LockTool, TRUE
+
+test2, ----, i, TOOL_CHANGER.ToolChangeRequired, TRUE
+test2, ----, i, TOOL_CHANGER.ToolCarouselPosition, 2
+test2, ----, i, TOOL_CHANGER.DesiredToolNumber, 1
+test2, ----, o, TOOL_CHANGER.RotateCarousel, TRUE
+test2, ----, o, TOOL_CHANGER.LockTool, FALSE
+
+test3, ----, i, TOOL_CHANGER.ToolChangeRequired, FALSE
+test3, ----, i, TOOL_CHANGER.ToolCarouselPosition, 1
+test3, ----, i, TOOL_CHANGER.DesiredToolNumber, 1
+test3, ----, o, TOOL_CHANGER.RotateCarousel, FALSE
+test3, ----, o, TOOL_CHANGER.LockTool, FALSE
+
+test4, ----, i, TOOL_CHANGER.ToolChangeRequired, FALSE
+test4, ----, i, TOOL_CHANGER.ToolCarouselPosition, 1
+test4, ----, i, TOOL_CHANGER.DesiredToolNumber, 2
+test4, ----, o, TOOL_CHANGER.RotateCarousel, FALSE
+test4, ----, o, TOOL_CHANGER.LockTool, FALSE

@@ -1,0 +1,29 @@
+Ticks, #TotalTests, #TestsSuccessful
+Tick 1, 3, 0
+Tick 2, 6, 0
+0,0: TestBlock.RotateCarousel = TRUE  actual=1.000000
+0,0: TestBlock.LockTool = FALSE  actual=0.000000
+1,0: TestBlock.RotateCarousel = FALSE  actual=0.000000
+1,0: TestBlock.LockTool = TRUE  actual=1.000000
+2,0: TestBlock.RotateCarousel = FALSE  actual=0.000000
+2,0: TestBlock.LockTool = FALSE  actual=0.000000
+Tick 3, 9, 0
+0,1: TestBlock.RotateCarousel = FALSE  actual=0.000000
+0,1: TestBlock.LockTool = TRUE  actual=1.000000
+1,1: TestBlock.RotateCarousel = FALSE  actual=0.000000
+1,1: TestBlock.LockTool = TRUE  actual=0.000000
+2,1: TestBlock.RotateCarousel = FALSE  actual=0.000000
+2,1: TestBlock.LockTool = FALSE  actual=0.000000
+Tick 4, 12, 0
+0,2: TestBlock.RotateCarousel = FALSE  actual=0.000000
+0,2: TestBlock.LockTool = FALSE  actual=0.000000
+2,2: TestBlock.RotateCarousel = FALSE  actual=0.000000
+2,2: TestBlock.LockTool = FALSE  actual=0.000000
+Tick 5, 14, 2
+Tick 6, 14, 2
+Tick 7, 14, 2
+Tick 8, 14, 2
+Tick 9, 14, 2
+Tick 10, 14, 2
+Program ended.
+Statement coverage for TOOL_CHANGER: 100.0%

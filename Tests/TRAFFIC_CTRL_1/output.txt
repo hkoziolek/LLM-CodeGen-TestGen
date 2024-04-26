@@ -1,0 +1,45 @@
+Ticks, #TotalTests, #TestsSuccessful
+Tick 1, 4, 0
+Tick 2, 8, 0
+0,0: TestBlock.NorthSouthRed = FALSE  actual=0.000000
+0,0: TestBlock.NorthSouthYellow = FALSE  actual=0.000000
+0,0: TestBlock.NorthSouthGreen = TRUE  actual=1.000000
+0,0: TestBlock.EastWestRed = TRUE  actual=1.000000
+0,0: TestBlock.EastWestYellow = FALSE  actual=0.000000
+0,0: TestBlock.EastWestGreen = FALSE  actual=0.000000
+0,0: TestBlock.PedestrianLight1 = FALSE  actual=0.000000
+0,0: TestBlock.PedestrianLight2 = FALSE  actual=0.000000
+1,0: TestBlock.NorthSouthRed = FALSE  actual=0.000000
+1,0: TestBlock.NorthSouthYellow = TRUE  actual=0.000000
+1,0: TestBlock.NorthSouthGreen = FALSE  actual=1.000000
+1,0: TestBlock.EastWestRed = TRUE  actual=1.000000
+1,0: TestBlock.EastWestYellow = FALSE  actual=0.000000
+1,0: TestBlock.EastWestGreen = FALSE  actual=0.000000
+1,0: TestBlock.PedestrianLight1 = FALSE  actual=0.000000
+1,0: TestBlock.PedestrianLight2 = FALSE  actual=0.000000
+2,0: TestBlock.NorthSouthRed = TRUE  actual=0.000000
+2,0: TestBlock.NorthSouthYellow = FALSE  actual=0.000000
+2,0: TestBlock.NorthSouthGreen = FALSE  actual=1.000000
+2,0: TestBlock.EastWestRed = TRUE  actual=1.000000
+2,0: TestBlock.EastWestYellow = FALSE  actual=0.000000
+2,0: TestBlock.EastWestGreen = TRUE  actual=0.000000
+2,0: TestBlock.PedestrianLight1 = FALSE  actual=0.000000
+2,0: TestBlock.PedestrianLight2 = TRUE  actual=0.000000
+3,0: TestBlock.NorthSouthRed = TRUE  actual=0.000000
+3,0: TestBlock.NorthSouthYellow = FALSE  actual=0.000000
+3,0: TestBlock.NorthSouthGreen = FALSE  actual=1.000000
+3,0: TestBlock.EastWestRed = TRUE  actual=1.000000
+3,0: TestBlock.EastWestYellow = TRUE  actual=0.000000
+3,0: TestBlock.EastWestGreen = FALSE  actual=0.000000
+3,0: TestBlock.PedestrianLight1 = TRUE  actual=0.000000
+3,0: TestBlock.PedestrianLight2 = TRUE  actual=0.000000
+Tick 3, 12, 4
+Tick 4, 12, 4
+Tick 5, 12, 4
+Tick 6, 12, 4
+Tick 7, 12, 4
+Tick 8, 12, 4
+Tick 9, 12, 4
+Tick 10, 12, 4
+Program ended.
+Statement coverage for TRAFFIC_CTRL: 61.29032258064516%

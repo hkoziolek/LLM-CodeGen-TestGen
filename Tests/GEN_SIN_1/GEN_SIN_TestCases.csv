@@ -1,0 +1,34 @@
+test0, ----, i, GEN_SIN.PT, t#500ms
+test0, ----, i, GEN_SIN.AM, 2.0
+test0, ----, i, GEN_SIN.OS, 1.0
+test0, ----, i, GEN_SIN.DL, 0.5
+test0, ----, o, GEN_SIN.Q, FALSE
+test0, ----, o, GEN_SIN.OUT, 1.7071067811865475
+
+test1, ----, i, GEN_SIN.PT, t#1000ms
+test1, ----, i, GEN_SIN.AM, 1.0
+test1, ----, i, GEN_SIN.OS, 0.0
+test1, ----, i, GEN_SIN.DL, 0.0
+test1, ----, o, GEN_SIN.Q, TRUE
+test1, ----, o, GEN_SIN.OUT, 0.0
+
+test2, ----, i, GEN_SIN.PT, t#2000ms
+test2, ----, i, GEN_SIN.AM, 3.0
+test2, ----, i, GEN_SIN.OS, 0.5
+test2, ----, i, GEN_SIN.DL, 0.25
+test2, ----, o, GEN_SIN.Q, FALSE
+test2, ----, o, GEN_SIN.OUT, 2.0606601717798214
+
+test3, ----, i, GEN_SIN.PT, t#1500ms
+test3, ----, i, GEN_SIN.AM, 0.5
+test3, ----, i, GEN_SIN.OS, 0.25
+test3, ----, i, GEN_SIN.DL, 0.75
+test3, ----, o, GEN_SIN.Q, TRUE
+test3, ----, o, GEN_SIN.OUT, 0.5
+
+test4, ----, i, GEN_SIN.PT, t#500ms
+test4, ----, i, GEN_SIN.AM, 2.5
+test4, ----, i, GEN_SIN.OS, 1.5
+test4, ----, i, GEN_SIN.DL, 1.0
+test4, ----, o, GEN_SIN.Q, FALSE
+test4, ----, o, GEN_SIN.OUT, 2.8531695488854605

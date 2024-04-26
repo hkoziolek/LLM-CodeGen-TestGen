@@ -1,0 +1,37 @@
+Ticks, #TotalTests, #TestsSuccessful
+Tick 1, 2, 0
+Tick 2, 4, 0
+0,0: TestBlock.NorthSouthRed = FALSE  actual=0.000000
+0,0: TestBlock.NorthSouthYellow = FALSE  actual=0.000000
+0,0: TestBlock.NorthSouthGreen = TRUE  actual=1.000000
+0,0: TestBlock.EastWestRed = TRUE  actual=1.000000
+0,0: TestBlock.EastWestYellow = FALSE  actual=0.000000
+0,0: TestBlock.EastWestGreen = FALSE  actual=0.000000
+0,0: TestBlock.PedestrianLight1 = FALSE  actual=0.000000
+0,0: TestBlock.PedestrianLight2 = FALSE  actual=0.000000
+1,0: TestBlock.NorthSouthRed = TRUE  actual=0.000000
+1,0: TestBlock.NorthSouthYellow = FALSE  actual=0.000000
+1,0: TestBlock.NorthSouthGreen = FALSE  actual=1.000000
+1,0: TestBlock.EastWestRed = FALSE  actual=1.000000
+1,0: TestBlock.EastWestYellow = FALSE  actual=0.000000
+1,0: TestBlock.EastWestGreen = TRUE  actual=0.000000
+1,0: TestBlock.PedestrianLight1 = FALSE  actual=0.000000
+1,0: TestBlock.PedestrianLight2 = TRUE  actual=0.000000
+Tick 3, 6, 0
+0,1: TestBlock.NorthSouthRed = FALSE  actual=0.000000
+0,1: TestBlock.NorthSouthYellow = TRUE  actual=0.000000
+0,1: TestBlock.NorthSouthGreen = FALSE  actual=1.000000
+0,1: TestBlock.EastWestRed = TRUE  actual=1.000000
+0,1: TestBlock.EastWestYellow = FALSE  actual=0.000000
+0,1: TestBlock.EastWestGreen = FALSE  actual=0.000000
+0,1: TestBlock.PedestrianLight1 = FALSE  actual=0.000000
+0,1: TestBlock.PedestrianLight2 = FALSE  actual=0.000000
+Tick 4, 7, 1
+Tick 5, 7, 1
+Tick 6, 7, 1
+Tick 7, 7, 1
+Tick 8, 7, 1
+Tick 9, 7, 1
+Tick 10, 7, 1
+Program ended.
+Statement coverage for TRAFFIC_CTRL: 61.29032258064516%

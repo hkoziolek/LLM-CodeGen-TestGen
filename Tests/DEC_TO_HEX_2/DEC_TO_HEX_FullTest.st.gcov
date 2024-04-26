@@ -1,0 +1,995 @@
+        -:    0:Source:../ETFA-Tests2/DEC_TO_HEX_FullTest.st
+        -:    0:Graph:Res0.gcno
+        -:    0:Data:Res0.gcda
+        -:    0:Runs:1
+        -:    1:FUNCTION BIT_OF_DWORD : BOOL
+        -:    2:  VAR_INPUT
+        -:    3:    IN : DWORD;
+        -:    4:    N : INT;
+        -:    5:  END_VAR
+        -:    6:
+    #####:    7:  BIT_OF_DWORD := (SHR(in,N) AND 16#00000001) > 0;
+        -:    8:  (* from OSCAT library; www.oscat.de  *)
+        -:    9:END_FUNCTION
+        -:   10:
+    #####:   11:FUNCTION SIGN_R : BOOL
+        -:   12:  VAR_INPUT
+    #####:   13:    IN : REAL;
+        -:   14:  END_VAR
+    #####:   15:
+    #####:   16:  SIGN_R := in < 0.0;
+    #####:   17:  (* from OSCAT library; www.oscat.de  *)
+    #####:   18:END_FUNCTION
+    #####:   19:
+    #####:   20:FUNCTION FLOOR : INT
+    #####:   21:  VAR_INPUT
+    #####:   22:    x : REAL;
+        -:   23:  END_VAR
+    #####:   24:
+    #####:   25:  FLOOR := REAL_TO_INT(X);
+    #####:   26:  IF INT_TO_REAL(FLOOR) > X THEN
+    #####:   27:  	floor := floor - 1;
+        -:   28:  END_IF;
+    #####:   29:  (* from OSCAT library; www.oscat.de  *)
+    #####:   30:END_FUNCTION
+        -:   31:
+    #####:   32:FUNCTION FLOOR2 : DINT
+    #####:   33:  VAR_INPUT
+    #####:   34:    x : REAL;
+    #####:   35:  END_VAR
+    #####:   36:
+    #####:   37:  FLOOR2 := REAL_TO_DINT(X);
+    #####:   38:  IF DINT_TO_REAL(FLOOR2) > X THEN
+    #####:   39:  	FLOOR2 := FLOOR2 - DINT#1;
+    #####:   40:  END_IF;
+    #####:   41:  (* from OSCAT library; www.oscat.de  *)
+    #####:   42:END_FUNCTION
+        -:   43:
+    #####:   44:FUNCTION MODR : REAL
+    #####:   45:  VAR_INPUT
+    #####:   46:    IN : REAL;
+    #####:   47:    DIVI : REAL;
+    #####:   48:  END_VAR
+        -:   49:
+    #####:   50:  IF divi = 0.0 THEN
+    #####:   51:  	MODR := 0.0;
+    #####:   52:  ELSE
+    #####:   53:  	MODR := in - DINT_TO_REAL(FLOOR2(in / divi)) * divi;
+    #####:   54:  END_IF;
+        -:   55:  (* from OSCAT library; www.oscat.de  *)
+    #####:   56:  (* FC FLOOR2 required *)
+        -:   57:END_FUNCTION
+        -:   58:
+    #####:   59:FUNCTION REVERSE : BYTE
+    #####:   60:  VAR_INPUT
+        -:   61:    IN : BYTE;
+    #####:   62:  END_VAR
+    #####:   63:
+    #####:   64:  reverse := SHL(in,7) OR SHR(in,7) OR (ROR(in,3) AND BYTE#2#01000100) OR (ROL(in,3) AND BYTE#2#00100010)
+    #####:   65:  	OR (SHL(in,1) AND BYTE#2#00010000) OR (SHR(in,1) AND BYTE#2#00001000);
+    #####:   66:
+    #####:   67:
+    #####:   68:  (* Fromm Oscat Library, www.oscat.de *)
+        -:   69:END_FUNCTION
+        -:   70:
+        -:   71:FUNCTION REFLECT : DWORD
+    #####:   72:  VAR_INPUT
+    #####:   73:    DI : DWORD;
+        -:   74:    L : INT;
+        -:   75:  END_VAR
+    #####:   76:  VAR
+        -:   77:    i : INT;
+    #####:   78:    _d : DWORD;
+    #####:   79:  END_VAR
+    #####:   80:
+    #####:   81:  _d := DI;
+    #####:   82:  FOR i := 1 TO L DO
+    #####:   83:  	REFLECT := SHL(REFLECT, 1) OR BOOL_TO_DWORD((_d AND DWORD#2#0000_0001) > DWORD#0); (* D.0 *)
+    #####:   84:  	_d := SHR(_d, 1);
+        -:   85:  END_FOR;
+    #####:   86:  REFLECT := REFLECT OR SHL(_d, L);
+    #####:   87:
+    #####:   88:
+        -:   89:  (* Fromm Oscat Library, www.oscat.de *)
+    #####:   90:END_FUNCTION
+        -:   91:
+    #####:   92:
+    #####:   93:FUNCTION BIT_LOAD_B : BYTE
+    #####:   94:  VAR_INPUT
+    #####:   95:    IN : BYTE;
+    #####:   96:    VAL : BOOL;
+        -:   97:    POS : INT;
+    #####:   98:  END_VAR
+        -:   99:
+    #####:  100:  IF VAL THEN
+    #####:  101:  	BIT_LOAD_B := in OR SHL(BYTE#1,pos);
+        -:  102:  ELSE
+    #####:  103:  	BIT_LOAD_B := in AND (NOT SHL(BYTE#1,pos));
+        -:  104:  END_IF;
+        -:  105:
+        -:  106:  (*From OSCAT Library, www.oscat.de*)
+    #####:  107:END_FUNCTION
+    #####:  108:
+    #####:  109:FUNCTION _BYTE_TO_INT : INT
+    #####:  110:  VAR_INPUT
+    #####:  111:    IN : BYTE;
+    #####:  112:  END_VAR
+    #####:  113:
+    #####:  114:  _BYTE_TO_INT := USINT_TO_INT(BYTE_TO_USINT(IN));
+    #####:  115:
+    #####:  116:  (*From OSCAT Library, www.oscat.de*)
+    #####:  117:END_FUNCTION
+    #####:  118:
+        -:  119:FUNCTION T_PLC_MS : UDINT
+        -:  120:  VAR
+    #####:  121:    tx : UDINT;
+    #####:  122:  END_VAR
+        -:  123:  VAR_INPUT
+    #####:  124:    debug : BOOL;
+    #####:  125:  END_VAR
+    #####:  126:  VAR
+    #####:  127:    N : INT := 0;
+    #####:  128:    offset : UDINT := 0;
+        -:  129:    temp : DWORD := 1;
+    #####:  130:  END_VAR
+    #####:  131:
+    #####:  132:  tx := 0;
+    #####:  133:  {extern unsigned long __tick;
+    #####:  134:  extern unsigned long long common_ticktime__;
+        -:  135:  unsigned long long ticktime_ms = (common_ticktime__)/1000000;
+        -:  136:  UDINT plc_time = (UDINT)(ticktime_ms * (unsigned long long)__tick);
+    #####:  137:  TX = plc_time}
+    #####:  138:  T_PLC_MS := tx;
+    #####:  139:  IF debug THEN
+    #####:  140:  	T_PLC_MS := (DWORD_TO_UDINT(SHL(UDINT_TO_DWORD(T_PLC_MS),N) OR SHL(temp,N))-1) + OFFSET;
+    #####:  141:  END_IF;
+    #####:  142:  
+    #####:  143:
+    #####:  144:  IF debug THEN
+    #####:  145:  	T_PLC_MS := (DWORD_TO_UDINT(SHL(UDINT_TO_DWORD(T_PLC_MS),N) OR SHL(temp,N))-1) + OFFSET;
+    #####:  146:  END_IF;
+    #####:  147:
+    #####:  148:  (* Original Code:
+        -:  149:  tx := TIME();
+    #####:  150:  T_PLC_MS := TIME_TO_DWORD(Tx);
+    #####:  151:  IF debug THEN
+        -:  152:  	T_PLC_MS := (SHL(T_PLC_MS,N) OR SHL(DWORD#1,N)-1) + OFFSET;
+        -:  153:  END_IF;
+    #####:  154:  *)
+    #####:  155:
+        -:  156:  (* From OSCAT library, www.oscat.de
+        -:  157:
+        -:  158:  this is a temporary T_PLC_MS FB until OpenPLC gets it´s own time() functionality *)
+    #####:  159:
+        -:  160:  (* PLC_TIME and Global variables PLC_SCAN_CYCL and PLC_CYCL_TIME required *)
+        -:  161:END_FUNCTION
+    #####:  162:
+        -:  163:
+    #####:  164:FUNCTION T_PLC_US : UDINT
+    #####:  165:  VAR
+    #####:  166:    tx : UDINT;
+        -:  167:  END_VAR
+    #####:  168:  VAR_INPUT
+        -:  169:    debug : BOOL;
+        -:  170:  END_VAR
+        -:  171:  VAR
+        -:  172:    N : INT := 0;
+    #####:  173:    offset : UDINT := 0;
+        -:  174:    temp : DWORD := 1;
+        -:  175:  END_VAR
+        -:  176:
+    #####:  177:  T_PLC_US := tx*1000;
+    #####:  178:  IF debug THEN
+    #####:  179:  	T_PLC_US := (DWORD_TO_UDINT(SHL(UDINT_TO_DWORD(T_PLC_US),N) OR SHL(temp,N))-1) + OFFSET;
+    #####:  180:  END_IF;
+    #####:  181:
+    #####:  182:  (* Original Code:
+    #####:  183:  tx := TIME();
+        -:  184:  T_PLC_US := TIME_TO_DWORD(Tx)*1000;
+    #####:  185:  IF debug THEN
+    #####:  186:  	T_PLC_US := (SHL(T_PLC_US,N) OR SHL(DWORD#1,N)-1) + OFFSET;
+    #####:  187:  END_IF;
+    #####:  188:  *)
+    #####:  189:
+    #####:  190:  (* From OSCAT library, www.oscat.de
+        -:  191:
+        -:  192:  this is a temporary T_PLC_US FB until OpenPLC gets it´s own time() functionality *)
+    #####:  193:
+        -:  194:  (* PLC_TIME and Global variables PLC_SCAN_CYCL and PLC_CYCL_TIME required *)
+        -:  195:END_FUNCTION
+    #####:  196:
+        -:  197:
+    #####:  198:
+    #####:  199:FUNCTION_BLOCK FT_DERIV
+    #####:  200:  VAR_INPUT
+        -:  201:    IN : REAL;
+    #####:  202:    K : REAL := 1.0;
+        -:  203:    RUN : BOOL := TRUE;
+        -:  204:  END_VAR
+        -:  205:  VAR_OUTPUT
+    #####:  206:    OUT : REAL;
+    #####:  207:  END_VAR
+    #####:  208:  VAR
+    #####:  209:    old : REAL;
+    #####:  210:    tx : UDINT;
+    #####:  211:    last : UDINT;
+    #####:  212:    init : BOOL;
+    #####:  213:    tc : REAL;
+    #####:  214:  END_VAR
+    #####:  215:
+    #####:  216:  tx:= T_PLC_US(en:=true);
+    #####:  217:  tc := UDINT_TO_REAL(tx - last);
+    #####:  218:
+        -:  219:  (* init on firsat startup *)
+    #####:  220:  IF NOT init THEN
+    #####:  221:  	init := TRUE;
+    #####:  222:  	old := in;
+    #####:  223:  ELSIF run AND tc > 0.0 THEN
+    #####:  224:  	out := (in - old) / tc * 1000000.0 * K;
+    #####:  225:  	old := in;
+        -:  226:  ELSE
+    #####:  227:  	out := 0.0;
+    #####:  228:  END_IF;
+        -:  229:
+    #####:  230:  last := tx;
+        -:  231:
+    #####:  232:  (* From OSCAT Library, www.oscat.de *)
+        -:  233:  (* T_PLC_US, required *)
+    #####:  234:END_FUNCTION_BLOCK
+    #####:  235:
+        -:  236:
+        -:  237:FUNCTION_BLOCK FT_PIWL
+        -:  238:  VAR_INPUT
+        -:  239:    IN : REAL;
+        -:  240:    KP : REAL := 1.0;
+        -:  241:    KI : REAL := 1.0;
+    #####:  242:    LIM_L : REAL := -1.0E38;
+    #####:  243:    LIM_H : REAL := 1.0E38;
+    #####:  244:    RST : BOOL;
+    #####:  245:  END_VAR
+    #####:  246:  VAR_OUTPUT
+    #####:  247:    Y : REAL;
+    #####:  248:    LIM : BOOL;
+    #####:  249:  END_VAR
+    #####:  250:  VAR
+    #####:  251:    init : BOOL;
+    #####:  252:    tx : UDINT;
+    #####:  253:    tc : REAL;
+    #####:  254:    t_last : UDINT;
+    #####:  255:    in_last : REAL;
+    #####:  256:    i : REAL;
+    #####:  257:    p : REAL;
+    #####:  258:  END_VAR
+    #####:  259:
+    #####:  260:  IF NOT init OR RST THEN
+    #####:  261:  	init := TRUE;
+    #####:  262:  	in_last := in;
+    #####:  263:  		t_last := T_PLC_US(en:=true);
+    #####:  264:  	i := 0.0;
+    #####:  265:  	tc := 0.0;
+    #####:  266:  ELSE
+    #####:  267:  	(* read last cycle time in Microseconds *)
+    #####:  268:  		tx := T_PLC_US(en:=true);
+    #####:  269:  	tc := UDINT_TO_REAL(tx - t_last);
+    #####:  270:  	t_last := tx;
+        -:  271:
+        -:  272:  	(* calculate proportional part *)
+    #####:  273:  	p := KP * IN;
+        -:  274:
+        -:  275:  	(* run integrator *)
+    #####:  276:  	i := (IN + in_last) * 5.0E-7 * KI * tc + i;
+    #####:  277:  	in_last := IN;
+        -:  278:
+        -:  279:  	(* calculate output Y *)
+    #####:  280:  	Y := p + i;
+        -:  281:
+        -:  282:  	(* check output for limits *)
+    #####:  283:  	IF Y >= LIM_H THEN
+    #####:  284:  		Y := LIM_H;
+    #####:  285:  		IF ki <> 0.0 THEN
+    #####:  286:  			i := LIM_H - p;
+        -:  287:  		ELSE
+    #####:  288:  			i := 0.0;
+        -:  289:  		END_IF;
+    #####:  290:  		LIM := TRUE;
+    #####:  291:  	ELSIF Y <= LIM_L THEN
+    #####:  292:  		Y := LIM_L;
+    #####:  293:  		IF ki <> 0.0 THEN
+    #####:  294:  			i := LIM_L - p;
+        -:  295:  		ELSE
+    #####:  296:  			i := 0.0;
+        -:  297:  		END_IF;
+    #####:  298:  		LIM := TRUE;
+        -:  299:  	ELSE
+    #####:  300:  		LIM := FALSE;
+        -:  301:  	END_IF;
+        -:  302:  END_IF;
+        -:  303:
+    #####:  304:  (* From OSCAT Library, www.oscat.de *)
+        -:  305:  (* T_PLC_US required *)
+    #####:  306:END_FUNCTION_BLOCK
+    #####:  307:
+        -:  308:
+        -:  309:FUNCTION_BLOCK INTEGRATE
+        -:  310:  VAR_INPUT
+        -:  311:    _E : BOOL := TRUE;
+        -:  312:    X : REAL;
+        -:  313:    K : REAL := 1.0;
+    #####:  314:  END_VAR
+    #####:  315:  VAR_IN_OUT
+    #####:  316:    Y : REAL;
+    #####:  317:  END_VAR
+    #####:  318:  VAR
+    #####:  319:    x_last : REAL;
+    #####:  320:    init : BOOL;
+    #####:  321:    last : UDINT;
+    #####:  322:    tx : UDINT;
+    #####:  323:  END_VAR
+    #####:  324:
+    #####:  325:  tx:= T_PLC_MS(en:=true);
+        -:  326:
+    #####:  327:  IF NOT init THEN
+    #####:  328:  	init := TRUE;
+    #####:  329:  	X_last := X;
+    #####:  330:  ELSIF _E THEN
+    #####:  331:  	Y := (X + X_LAST) * 0.5E-3 * UDINT_TO_REAL(tx-last) * K + Y;
+    #####:  332:  	X_last := X;
+        -:  333:  END_IF;
+    #####:  334:  last := tx;
+    #####:  335:
+    #####:  336:  (* From OSCAT Library, www.oscat.de *)
+        -:  337:  (* T_PLC_MS required *)
+    #####:  338:END_FUNCTION_BLOCK
+    #####:  339:
+        -:  340:FUNCTION_BLOCK DEC_TO_HEX
+        -:  341:  VAR_INPUT
+        -:  342:    DecimalValue : DINT;
+        -:  343:  END_VAR
+        -:  344:  VAR_OUTPUT
+        -:  345:    HexString : STRING;
+       18:  346:  END_VAR
+      18*:  347:  VAR
+      18*:  348:    i : INT;
+      18*:  349:    hexDigits : ARRAY [0..15] OF STRING := ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'];
+      18*:  350:    digitIndex : INT;
+      18*:  351:    hexDigit : STRING;
+        -:  352:    significantDigitFound : BOOL := FALSE;
+        -:  353:    digitValue : DINT;
+       18:  354:    powerOfInteger : DINT;
+        -:  355:  END_VAR
+      18*:  356:
+      36*:  357:  HexString := ''; 
+      18*:  358:
+      36*:  359:  IF DecimalValue = 0 THEN
+      19*:  360:      HexString := '0';
+        1:  361:      RETURN;
+        -:  362:  END_IF;
+        -:  363:
+       17:  364:  significantDigitFound := FALSE; 
+        -:  365:
+       18:  366:  FOR digitIndex := 0 TO 7 DO
+      17*:  367:      
+     153*:  368:      powerOfInteger:=1;
+        -:  369:      FOR i := 1 TO 7 - digitIndex DO
+      612:  370:        powerOfInteger := powerOfInteger * 16;
+      630:  371:      END_FOR;
+      476:  372:     
+      136:  373:      digitValue := DIV(DecimalValue, powerOfInteger) MOD 16;
+      136:  374:      hexDigit := hexDigits[digitValue];
+        -:  375:      
+      136:  376:      IF hexDigit <> '0' OR significantDigitFound OR (7 - digitIndex) = 0 THEN
+       30:  377:          significantDigitFound := TRUE;
+       30:  378:          HexString := CONCAT(HexString, hexDigit);
+        -:  379:      END_IF;
+        -:  380:              
+        -:  381:  END_FOR;
+        -:  382:END_FUNCTION_BLOCK
+        -:  383:
+        -:  384:FUNCTION_BLOCK FB_TEST_0
+        -:  385:  VAR_OUTPUT
+      136:  386:    Finished : BOOL;
+        -:  387:    Failed : BOOL;
+        -:  388:  END_VAR
+       17:  389:  VAR
+        -:  390:    TestBlock : DEC_TO_HEX;
+       18:  391:    TestState : INT;
+       18:  392:    Timer : TON;
+        -:  393:  END_VAR
+        -:  394:
+        3:  395:  Timer(IN:=TRUE, PT:= T#0s); (* placeholder for later usage *)
+        3:  396:  
+        3:  397:  CASE testState OF
+        3:  398:    0:
+        3:  399:      IF (Timer.Q) THEN
+       2*:  400:        TestBlock(DecimalValue := 0);
+       2*:  401:        TestState:=TestState+1;
+       1*:  402:      END_IF;
+       3*:  403:      Timer(IN:=TRUE, PT:=T#0s);
+        3:  404:    1:
+       4*:  405:      IF (Timer.Q) THEN
+        1:  406:      {printf("0,0: TestBlock.HexString = '0'  actual=%s\n", (char*)&__GET_VAR(data__->TESTBLOCK.HEXSTRING,).body);}
+       2*:  407:        IF NOT(TestBlock.HexString = '0') THEN Failed := TRUE; END_IF;
+        1:  408:      END_IF;
+        1:  409:      Finished:=TRUE;
+        3:  410:  END_CASE;
+        -:  411:END_FUNCTION_BLOCK
+        3:  412:
+       3*:  413:FUNCTION_BLOCK FB_TEST_1
+    #####:  414:  VAR_OUTPUT
+        3:  415:    Finished : BOOL;
+        3:  416:    Failed : BOOL;
+        3:  417:  END_VAR
+        -:  418:  VAR
+        -:  419:    TestBlock : DEC_TO_HEX;
+        -:  420:    TestState : INT;
+        -:  421:    Timer : TON;
+        -:  422:  END_VAR
+        1:  423:
+       4*:  424:  Timer(IN:=TRUE, PT:= T#0s); (* placeholder for later usage *)
+       4*:  425:  
+       4*:  426:  CASE testState OF
+       1*:  427:    0:
+        4:  428:      IF (Timer.Q) THEN
+       2*:  429:        TestBlock(DecimalValue := 1);
+        2:  430:        TestState:=TestState+1;
+        1:  431:      END_IF;
+        2:  432:      Timer(IN:=TRUE, PT:=T#0s);
+        2:  433:    1:
+        3:  434:      IF (Timer.Q) THEN
+        -:  435:      {printf("1,0: TestBlock.HexString = '1'  actual=%s\n", (char*)&__GET_VAR(data__->TESTBLOCK.HEXSTRING,).body);}
+       5*:  436:        IF NOT(TestBlock.HexString = '1') THEN Failed := TRUE; END_IF;
+       1*:  437:      END_IF;
+       1*:  438:      Finished:=TRUE;
+        -:  439:  END_CASE;
+        -:  440:END_FUNCTION_BLOCK
+        3:  441:
+        3:  442:FUNCTION_BLOCK FB_TEST_2
+        -:  443:  VAR_OUTPUT
+        3:  444:    Finished : BOOL;
+        3:  445:    Failed : BOOL;
+        -:  446:  END_VAR
+        -:  447:  VAR
+        -:  448:    TestBlock : DEC_TO_HEX;
+        -:  449:    TestState : INT;
+        -:  450:    Timer : TON;
+        -:  451:  END_VAR
+        1:  452:
+       4*:  453:  Timer(IN:=TRUE, PT:= T#0s); (* placeholder for later usage *)
+       4*:  454:  
+       4*:  455:  CASE testState OF
+       1*:  456:    0:
+        4:  457:      IF (Timer.Q) THEN
+       2*:  458:        TestBlock(DecimalValue := 10);
+        2:  459:        TestState:=TestState+1;
+        1:  460:      END_IF;
+        2:  461:      Timer(IN:=TRUE, PT:=T#0s);
+        2:  462:    1:
+        3:  463:      IF (Timer.Q) THEN
+        -:  464:      {printf("2,0: TestBlock.HexString = 'A'  actual=%s\n", (char*)&__GET_VAR(data__->TESTBLOCK.HEXSTRING,).body);}
+       5*:  465:        IF NOT(TestBlock.HexString = 'A') THEN Failed := TRUE; END_IF;
+       1*:  466:      END_IF;
+       1*:  467:      Finished:=TRUE;
+        -:  468:  END_CASE;
+        -:  469:END_FUNCTION_BLOCK
+        3:  470:
+        3:  471:FUNCTION_BLOCK FB_TEST_3
+        -:  472:  VAR_OUTPUT
+        3:  473:    Finished : BOOL;
+        3:  474:    Failed : BOOL;
+        -:  475:  END_VAR
+        -:  476:  VAR
+        -:  477:    TestBlock : DEC_TO_HEX;
+        -:  478:    TestState : INT;
+        -:  479:    Timer : TON;
+        -:  480:  END_VAR
+        1:  481:
+       4*:  482:  Timer(IN:=TRUE, PT:= T#0s); (* placeholder for later usage *)
+       4*:  483:  
+       4*:  484:  CASE testState OF
+       1*:  485:    0:
+        4:  486:      IF (Timer.Q) THEN
+       2*:  487:        TestBlock(DecimalValue := 15);
+        2:  488:        TestState:=TestState+1;
+        1:  489:      END_IF;
+        2:  490:      Timer(IN:=TRUE, PT:=T#0s);
+        2:  491:    1:
+        3:  492:      IF (Timer.Q) THEN
+        -:  493:      {printf("3,0: TestBlock.HexString = 'F'  actual=%s\n", (char*)&__GET_VAR(data__->TESTBLOCK.HEXSTRING,).body);}
+       5*:  494:        IF NOT(TestBlock.HexString = 'F') THEN Failed := TRUE; END_IF;
+       1*:  495:      END_IF;
+       1*:  496:      Finished:=TRUE;
+        -:  497:  END_CASE;
+        -:  498:END_FUNCTION_BLOCK
+        3:  499:
+        3:  500:FUNCTION_BLOCK FB_TEST_4
+        -:  501:  VAR_OUTPUT
+        3:  502:    Finished : BOOL;
+        3:  503:    Failed : BOOL;
+        -:  504:  END_VAR
+        -:  505:  VAR
+        -:  506:    TestBlock : DEC_TO_HEX;
+        -:  507:    TestState : INT;
+        -:  508:    Timer : TON;
+        -:  509:  END_VAR
+        1:  510:
+       4*:  511:  Timer(IN:=TRUE, PT:= T#0s); (* placeholder for later usage *)
+       4*:  512:  
+       4*:  513:  CASE testState OF
+       1*:  514:    0:
+        4:  515:      IF (Timer.Q) THEN
+       2*:  516:        TestBlock(DecimalValue := 16);
+        2:  517:        TestState:=TestState+1;
+        1:  518:      END_IF;
+        2:  519:      Timer(IN:=TRUE, PT:=T#0s);
+        2:  520:    1:
+        3:  521:      IF (Timer.Q) THEN
+        -:  522:      {printf("4,0: TestBlock.HexString = '10'  actual=%s\n", (char*)&__GET_VAR(data__->TESTBLOCK.HEXSTRING,).body);}
+       5*:  523:        IF NOT(TestBlock.HexString = '10') THEN Failed := TRUE; END_IF;
+       1*:  524:      END_IF;
+       1*:  525:      Finished:=TRUE;
+        -:  526:  END_CASE;
+        -:  527:END_FUNCTION_BLOCK
+        3:  528:
+        3:  529:FUNCTION_BLOCK FB_TEST_5
+        -:  530:  VAR_OUTPUT
+        3:  531:    Finished : BOOL;
+        3:  532:    Failed : BOOL;
+        -:  533:  END_VAR
+        -:  534:  VAR
+        -:  535:    TestBlock : DEC_TO_HEX;
+        -:  536:    TestState : INT;
+        -:  537:    Timer : TON;
+        -:  538:  END_VAR
+        1:  539:
+       4*:  540:  Timer(IN:=TRUE, PT:= T#0s); (* placeholder for later usage *)
+       4*:  541:  
+       4*:  542:  CASE testState OF
+       1*:  543:    0:
+        4:  544:      IF (Timer.Q) THEN
+       2*:  545:        TestBlock(DecimalValue := 255);
+        2:  546:        TestState:=TestState+1;
+        1:  547:      END_IF;
+        2:  548:      Timer(IN:=TRUE, PT:=T#0s);
+        2:  549:    1:
+        3:  550:      IF (Timer.Q) THEN
+        -:  551:      {printf("5,0: TestBlock.HexString = 'FF'  actual=%s\n", (char*)&__GET_VAR(data__->TESTBLOCK.HEXSTRING,).body);}
+       5*:  552:        IF NOT(TestBlock.HexString = 'FF') THEN Failed := TRUE; END_IF;
+       1*:  553:      END_IF;
+       1*:  554:      Finished:=TRUE;
+        -:  555:  END_CASE;
+        -:  556:END_FUNCTION_BLOCK
+        3:  557:
+        3:  558:FUNCTION_BLOCK FB_TEST_6
+        -:  559:  VAR_OUTPUT
+        3:  560:    Finished : BOOL;
+        3:  561:    Failed : BOOL;
+        -:  562:  END_VAR
+        -:  563:  VAR
+        -:  564:    TestBlock : DEC_TO_HEX;
+        -:  565:    TestState : INT;
+        -:  566:    Timer : TON;
+        -:  567:  END_VAR
+        1:  568:
+       4*:  569:  Timer(IN:=TRUE, PT:= T#0s); (* placeholder for later usage *)
+       4*:  570:  
+       4*:  571:  CASE testState OF
+       1*:  572:    0:
+        4:  573:      IF (Timer.Q) THEN
+       2*:  574:        TestBlock(DecimalValue := 4095);
+        2:  575:        TestState:=TestState+1;
+        1:  576:      END_IF;
+        2:  577:      Timer(IN:=TRUE, PT:=T#0s);
+        2:  578:    1:
+        3:  579:      IF (Timer.Q) THEN
+        -:  580:      {printf("6,0: TestBlock.HexString = 'FFF'  actual=%s\n", (char*)&__GET_VAR(data__->TESTBLOCK.HEXSTRING,).body);}
+       5*:  581:        IF NOT(TestBlock.HexString = 'FFF') THEN Failed := TRUE; END_IF;
+       1*:  582:      END_IF;
+       1*:  583:      Finished:=TRUE;
+        -:  584:  END_CASE;
+        -:  585:END_FUNCTION_BLOCK
+        3:  586:
+        3:  587:FUNCTION_BLOCK FB_TEST_7
+        -:  588:  VAR_OUTPUT
+        3:  589:    Finished : BOOL;
+        3:  590:    Failed : BOOL;
+        -:  591:  END_VAR
+        -:  592:  VAR
+        -:  593:    TestBlock : DEC_TO_HEX;
+        -:  594:    TestState : INT;
+        -:  595:    Timer : TON;
+        -:  596:  END_VAR
+        1:  597:
+       4*:  598:  Timer(IN:=TRUE, PT:= T#0s); (* placeholder for later usage *)
+       4*:  599:  
+       4*:  600:  CASE testState OF
+       1*:  601:    0:
+        4:  602:      IF (Timer.Q) THEN
+       2*:  603:        TestBlock(DecimalValue := 32767);
+        2:  604:        TestState:=TestState+1;
+        1:  605:      END_IF;
+        2:  606:      Timer(IN:=TRUE, PT:=T#0s);
+        2:  607:    1:
+        3:  608:      IF (Timer.Q) THEN
+        -:  609:      {printf("7,0: TestBlock.HexString = '7FFF'  actual=%s\n", (char*)&__GET_VAR(data__->TESTBLOCK.HEXSTRING,).body);}
+       5*:  610:        IF NOT(TestBlock.HexString = '7FFF') THEN Failed := TRUE; END_IF;
+       1*:  611:      END_IF;
+       1*:  612:      Finished:=TRUE;
+        -:  613:  END_CASE;
+        -:  614:END_FUNCTION_BLOCK
+        3:  615:
+        3:  616:FUNCTION_BLOCK FB_TEST_8
+        -:  617:  VAR_OUTPUT
+        3:  618:    Finished : BOOL;
+        3:  619:    Failed : BOOL;
+        -:  620:  END_VAR
+        -:  621:  VAR
+        -:  622:    TestBlock : DEC_TO_HEX;
+        -:  623:    TestState : INT;
+        -:  624:    Timer : TON;
+        -:  625:  END_VAR
+        1:  626:
+       4*:  627:  Timer(IN:=TRUE, PT:= T#0s); (* placeholder for later usage *)
+       4*:  628:  
+       4*:  629:  CASE testState OF
+       1*:  630:    0:
+        4:  631:      IF (Timer.Q) THEN
+       2*:  632:        TestBlock(DecimalValue := 32768);
+        2:  633:        TestState:=TestState+1;
+        1:  634:      END_IF;
+        2:  635:      Timer(IN:=TRUE, PT:=T#0s);
+        2:  636:    1:
+        3:  637:      IF (Timer.Q) THEN
+        -:  638:      {printf("8,0: TestBlock.HexString = '8000'  actual=%s\n", (char*)&__GET_VAR(data__->TESTBLOCK.HEXSTRING,).body);}
+       5*:  639:        IF NOT(TestBlock.HexString = '8000') THEN Failed := TRUE; END_IF;
+       1*:  640:      END_IF;
+       1*:  641:      Finished:=TRUE;
+        -:  642:  END_CASE;
+        -:  643:END_FUNCTION_BLOCK
+        3:  644:
+        3:  645:FUNCTION_BLOCK FB_TEST_9
+        -:  646:  VAR_OUTPUT
+        3:  647:    Finished : BOOL;
+        3:  648:    Failed : BOOL;
+        -:  649:  END_VAR
+        -:  650:  VAR
+        -:  651:    TestBlock : DEC_TO_HEX;
+        -:  652:    TestState : INT;
+        -:  653:    Timer : TON;
+        -:  654:  END_VAR
+        1:  655:
+       4*:  656:  Timer(IN:=TRUE, PT:= T#0s); (* placeholder for later usage *)
+       4*:  657:  
+       4*:  658:  CASE testState OF
+       1*:  659:    0:
+        4:  660:      IF (Timer.Q) THEN
+       2*:  661:        TestBlock(DecimalValue := 65535);
+        2:  662:        TestState:=TestState+1;
+        1:  663:      END_IF;
+        2:  664:      Timer(IN:=TRUE, PT:=T#0s);
+        2:  665:    1:
+        3:  666:      IF (Timer.Q) THEN
+        -:  667:      {printf("9,0: TestBlock.HexString = 'FFFF'  actual=%s\n", (char*)&__GET_VAR(data__->TESTBLOCK.HEXSTRING,).body);}
+       5*:  668:        IF NOT(TestBlock.HexString = 'FFFF') THEN Failed := TRUE; END_IF;
+       1*:  669:      END_IF;
+       1*:  670:      Finished:=TRUE;
+        -:  671:  END_CASE;
+        -:  672:END_FUNCTION_BLOCK
+        3:  673:
+        3:  674:FUNCTION_BLOCK FB_TEST_10
+        -:  675:  VAR_OUTPUT
+        3:  676:    Finished : BOOL;
+        3:  677:    Failed : BOOL;
+        -:  678:  END_VAR
+        -:  679:  VAR
+        -:  680:    TestBlock : DEC_TO_HEX;
+        -:  681:    TestState : INT;
+        -:  682:    Timer : TON;
+        -:  683:  END_VAR
+        1:  684:
+       4*:  685:  Timer(IN:=TRUE, PT:= T#0s); (* placeholder for later usage *)
+       4*:  686:  
+       4*:  687:  CASE testState OF
+       1*:  688:    0:
+        4:  689:      IF (Timer.Q) THEN
+       2*:  690:        TestBlock(DecimalValue := -32768);
+        2:  691:        TestState:=TestState+1;
+        1:  692:      END_IF;
+        2:  693:      Timer(IN:=TRUE, PT:=T#0s);
+        2:  694:    1:
+        3:  695:      IF (Timer.Q) THEN
+        -:  696:      {printf("10,0: TestBlock.HexString = '8000'  actual=%s\n", (char*)&__GET_VAR(data__->TESTBLOCK.HEXSTRING,).body);}
+        5:  697:        IF NOT(TestBlock.HexString = '8000') THEN Failed := TRUE; END_IF;
+       1*:  698:      END_IF;
+       1*:  699:      Finished:=TRUE;
+        -:  700:  END_CASE;
+        -:  701:END_FUNCTION_BLOCK
+        3:  702:
+        3:  703:FUNCTION_BLOCK FB_TEST_11
+        -:  704:  VAR_OUTPUT
+        3:  705:    Finished : BOOL;
+        3:  706:    Failed : BOOL;
+        -:  707:  END_VAR
+        -:  708:  VAR
+        -:  709:    TestBlock : DEC_TO_HEX;
+        -:  710:    TestState : INT;
+        -:  711:    Timer : TON;
+        -:  712:  END_VAR
+        1:  713:
+       4*:  714:  Timer(IN:=TRUE, PT:= T#0s); (* placeholder for later usage *)
+       4*:  715:  
+       4*:  716:  CASE testState OF
+       1*:  717:    0:
+        4:  718:      IF (Timer.Q) THEN
+       2*:  719:        TestBlock(DecimalValue := -1);
+        2:  720:        TestState:=TestState+1;
+        1:  721:      END_IF;
+        2:  722:      Timer(IN:=TRUE, PT:=T#0s);
+        2:  723:    1:
+        3:  724:      IF (Timer.Q) THEN
+        -:  725:      {printf("11,0: TestBlock.HexString = 'FFFFFFFF'  actual=%s\n", (char*)&__GET_VAR(data__->TESTBLOCK.HEXSTRING,).body);}
+       5*:  726:        IF NOT(TestBlock.HexString = 'FFFFFFFF') THEN Failed := TRUE; END_IF;
+       1*:  727:      END_IF;
+       1*:  728:      Finished:=TRUE;
+        -:  729:  END_CASE;
+        -:  730:END_FUNCTION_BLOCK
+        3:  731:
+        3:  732:FUNCTION_BLOCK FB_TEST_12
+        -:  733:  VAR_OUTPUT
+        3:  734:    Finished : BOOL;
+        3:  735:    Failed : BOOL;
+        -:  736:  END_VAR
+        -:  737:  VAR
+        -:  738:    TestBlock : DEC_TO_HEX;
+        -:  739:    TestState : INT;
+        -:  740:    Timer : TON;
+        -:  741:  END_VAR
+        1:  742:
+       4*:  743:  Timer(IN:=TRUE, PT:= T#0s); (* placeholder for later usage *)
+       4*:  744:  
+       4*:  745:  CASE testState OF
+       1*:  746:    0:
+        4:  747:      IF (Timer.Q) THEN
+       2*:  748:        TestBlock(DecimalValue := -16);
+        2:  749:        TestState:=TestState+1;
+        1:  750:      END_IF;
+        2:  751:      Timer(IN:=TRUE, PT:=T#0s);
+        2:  752:    1:
+        3:  753:      IF (Timer.Q) THEN
+        -:  754:      {printf("12,0: TestBlock.HexString = 'FFFFFFF0'  actual=%s\n", (char*)&__GET_VAR(data__->TESTBLOCK.HEXSTRING,).body);}
+        5:  755:        IF NOT(TestBlock.HexString = 'FFFFFFF0') THEN Failed := TRUE; END_IF;
+       1*:  756:      END_IF;
+       1*:  757:      Finished:=TRUE;
+        -:  758:  END_CASE;
+        -:  759:END_FUNCTION_BLOCK
+        3:  760:
+        3:  761:FUNCTION_BLOCK FB_TEST_13
+        -:  762:  VAR_OUTPUT
+        3:  763:    Finished : BOOL;
+        3:  764:    Failed : BOOL;
+        -:  765:  END_VAR
+        -:  766:  VAR
+        -:  767:    TestBlock : DEC_TO_HEX;
+        -:  768:    TestState : INT;
+        -:  769:    Timer : TON;
+        -:  770:  END_VAR
+        1:  771:
+       4*:  772:  Timer(IN:=TRUE, PT:= T#0s); (* placeholder for later usage *)
+       4*:  773:  
+       4*:  774:  CASE testState OF
+       1*:  775:    0:
+        4:  776:      IF (Timer.Q) THEN
+       2*:  777:        TestBlock(DecimalValue := -255);
+        2:  778:        TestState:=TestState+1;
+        1:  779:      END_IF;
+        2:  780:      Timer(IN:=TRUE, PT:=T#0s);
+        2:  781:    1:
+        3:  782:      IF (Timer.Q) THEN
+        -:  783:      {printf("13,0: TestBlock.HexString = 'FFFFFF01'  actual=%s\n", (char*)&__GET_VAR(data__->TESTBLOCK.HEXSTRING,).body);}
+       5*:  784:        IF NOT(TestBlock.HexString = 'FFFFFF01') THEN Failed := TRUE; END_IF;
+       1*:  785:      END_IF;
+       1*:  786:      Finished:=TRUE;
+        -:  787:  END_CASE;
+        -:  788:END_FUNCTION_BLOCK
+        3:  789:
+        3:  790:FUNCTION_BLOCK FB_TEST_14
+        -:  791:  VAR_OUTPUT
+        3:  792:    Finished : BOOL;
+        3:  793:    Failed : BOOL;
+        -:  794:  END_VAR
+        -:  795:  VAR
+        -:  796:    TestBlock : DEC_TO_HEX;
+        -:  797:    TestState : INT;
+        -:  798:    Timer : TON;
+        -:  799:  END_VAR
+        1:  800:
+       4*:  801:  Timer(IN:=TRUE, PT:= T#0s); (* placeholder for later usage *)
+       4*:  802:  
+       4*:  803:  CASE testState OF
+       1*:  804:    0:
+        4:  805:      IF (Timer.Q) THEN
+       2*:  806:        TestBlock(DecimalValue := -4095);
+        2:  807:        TestState:=TestState+1;
+        1:  808:      END_IF;
+        2:  809:      Timer(IN:=TRUE, PT:=T#0s);
+        2:  810:    1:
+        3:  811:      IF (Timer.Q) THEN
+        -:  812:      {printf("14,0: TestBlock.HexString = 'FFFFF001'  actual=%s\n", (char*)&__GET_VAR(data__->TESTBLOCK.HEXSTRING,).body);}
+       5*:  813:        IF NOT(TestBlock.HexString = 'FFFFF001') THEN Failed := TRUE; END_IF;
+       1*:  814:      END_IF;
+       1*:  815:      Finished:=TRUE;
+        -:  816:  END_CASE;
+        -:  817:END_FUNCTION_BLOCK
+        3:  818:
+        3:  819:FUNCTION_BLOCK FB_TEST_15
+        -:  820:  VAR_OUTPUT
+        3:  821:    Finished : BOOL;
+        3:  822:    Failed : BOOL;
+        -:  823:  END_VAR
+        -:  824:  VAR
+        -:  825:    TestBlock : DEC_TO_HEX;
+        -:  826:    TestState : INT;
+        -:  827:    Timer : TON;
+        -:  828:  END_VAR
+        1:  829:
+       4*:  830:  Timer(IN:=TRUE, PT:= T#0s); (* placeholder for later usage *)
+       4*:  831:  
+       4*:  832:  CASE testState OF
+       1*:  833:    0:
+        4:  834:      IF (Timer.Q) THEN
+       2*:  835:        TestBlock(DecimalValue := -32767);
+        2:  836:        TestState:=TestState+1;
+        1:  837:      END_IF;
+        2:  838:      Timer(IN:=TRUE, PT:=T#0s);
+        2:  839:    1:
+        3:  840:      IF (Timer.Q) THEN
+        -:  841:      {printf("15,0: TestBlock.HexString = 'FFFF8001'  actual=%s\n", (char*)&__GET_VAR(data__->TESTBLOCK.HEXSTRING,).body);}
+       5*:  842:        IF NOT(TestBlock.HexString = 'FFFF8001') THEN Failed := TRUE; END_IF;
+       1*:  843:      END_IF;
+       1*:  844:      Finished:=TRUE;
+        -:  845:  END_CASE;
+        -:  846:END_FUNCTION_BLOCK
+        3:  847:
+        3:  848:FUNCTION_BLOCK FB_TEST_16
+        -:  849:  VAR_OUTPUT
+        3:  850:    Finished : BOOL;
+        3:  851:    Failed : BOOL;
+        -:  852:  END_VAR
+        -:  853:  VAR
+        -:  854:    TestBlock : DEC_TO_HEX;
+        -:  855:    TestState : INT;
+        -:  856:    Timer : TON;
+        -:  857:  END_VAR
+        1:  858:
+       4*:  859:  Timer(IN:=TRUE, PT:= T#0s); (* placeholder for later usage *)
+       4*:  860:  
+       4*:  861:  CASE testState OF
+       1*:  862:    0:
+        4:  863:      IF (Timer.Q) THEN
+       2*:  864:        TestBlock(DecimalValue := -32768);
+        2:  865:        TestState:=TestState+1;
+        1:  866:      END_IF;
+        2:  867:      Timer(IN:=TRUE, PT:=T#0s);
+        2:  868:    1:
+        3:  869:      IF (Timer.Q) THEN
+        -:  870:      {printf("16,0: TestBlock.HexString = 'FFFF8000'  actual=%s\n", (char*)&__GET_VAR(data__->TESTBLOCK.HEXSTRING,).body);}
+        5:  871:        IF NOT(TestBlock.HexString = 'FFFF8000') THEN Failed := TRUE; END_IF;
+       1*:  872:      END_IF;
+       1*:  873:      Finished:=TRUE;
+        -:  874:  END_CASE;
+        -:  875:END_FUNCTION_BLOCK
+        3:  876:
+        3:  877:FUNCTION_BLOCK FB_TEST_17
+        -:  878:  VAR_OUTPUT
+        3:  879:    Finished : BOOL;
+        3:  880:    Failed : BOOL;
+        -:  881:  END_VAR
+        -:  882:  VAR
+        -:  883:    TestBlock : DEC_TO_HEX;
+        -:  884:    TestState : INT;
+        -:  885:    Timer : TON;
+        -:  886:  END_VAR
+        1:  887:
+       4*:  888:  Timer(IN:=TRUE, PT:= T#0s); (* placeholder for later usage *)
+       4*:  889:  
+       4*:  890:  CASE testState OF
+       1*:  891:    0:
+        4:  892:      IF (Timer.Q) THEN
+       2*:  893:        TestBlock(DecimalValue := -65535);
+        2:  894:        TestState:=TestState+1;
+        1:  895:      END_IF;
+        2:  896:      Timer(IN:=TRUE, PT:=T#0s);
+        2:  897:    1:
+        3:  898:      IF (Timer.Q) THEN
+        -:  899:      {printf("17,0: TestBlock.HexString = 'FFFF0001'  actual=%s\n", (char*)&__GET_VAR(data__->TESTBLOCK.HEXSTRING,).body);}
+       5*:  900:        IF NOT(TestBlock.HexString = 'FFFF0001') THEN Failed := TRUE; END_IF;
+       1*:  901:      END_IF;
+       1*:  902:      Finished:=TRUE;
+        -:  903:  END_CASE;
+        -:  904:END_FUNCTION_BLOCK
+        3:  905:
+        3:  906:
+        -:  907:PROGRAM TestRunnerProgram
+        3:  908:VAR
+        3:  909:  testResult AT %QX0.0 : BOOL := FALSE;
+        -:  910:END_VAR
+        -:  911:VAR
+        -:  912:  totalTests AT %QW0 : INT := 0;
+        -:  913:  passedTests AT %QW1 : INT := 0;
+        -:  914:END_VAR
+        -:  915:VAR
+        1:  916:  i: INT := 0;
+       1*:  917:  testOutcomeArray : ARRAY [0..17] OF BOOL;
+        1:  918:  Test_0: FB_TEST_0;
+       1*:  919:  Test_1: FB_TEST_1;
+        1:  920:  Test_2: FB_TEST_2;
+       1*:  921:  Test_3: FB_TEST_3;
+        1:  922:  Test_4: FB_TEST_4;
+       1*:  923:  Test_5: FB_TEST_5;
+        -:  924:  Test_6: FB_TEST_6;
+        -:  925:  Test_7: FB_TEST_7;
+        1:  926:  Test_8: FB_TEST_8;
+        -:  927:  Test_9: FB_TEST_9;
+        1:  928:  Test_10: FB_TEST_10;
+        1:  929:  Test_11: FB_TEST_11;
+        1:  930:  Test_12: FB_TEST_12;
+        1:  931:  Test_13: FB_TEST_13;
+        1:  932:  Test_14: FB_TEST_14;
+        1:  933:  Test_15: FB_TEST_15;
+        1:  934:  Test_16: FB_TEST_16;
+        1:  935:  Test_17: FB_TEST_17;
+        1:  936:END_VAR
+        1:  937:
+       4*:  938:  IF NOT Test_0.Finished AND NOT Test_0.FAILED THEN totalTests := totalTests + 1; Test_0(); END_IF;
+       11:  939:  IF Test_0.Finished THEN testOutcomeArray[0] := TRUE; END_IF;
+      11*:  940:  IF NOT Test_1.Finished AND NOT Test_1.FAILED THEN totalTests := totalTests + 1; Test_1(); END_IF;
+       11:  941:  IF Test_1.Finished THEN testOutcomeArray[1] := TRUE; END_IF;
+      11*:  942:  IF NOT Test_2.Finished AND NOT Test_2.FAILED THEN totalTests := totalTests + 1; Test_2(); END_IF;
+       11:  943:  IF Test_2.Finished THEN testOutcomeArray[2] := TRUE; END_IF;
+      11*:  944:  IF NOT Test_3.Finished AND NOT Test_3.FAILED THEN totalTests := totalTests + 1; Test_3(); END_IF;
+       11:  945:  IF Test_3.Finished THEN testOutcomeArray[3] := TRUE; END_IF;
+      10*:  946:  IF NOT Test_4.Finished AND NOT Test_4.FAILED THEN totalTests := totalTests + 1; Test_4(); END_IF;
+       10:  947:  IF Test_4.Finished THEN testOutcomeArray[4] := TRUE; END_IF;
+      10*:  948:  IF NOT Test_5.Finished AND NOT Test_5.FAILED THEN totalTests := totalTests + 1; Test_5(); END_IF;
+       20:  949:  IF Test_5.Finished THEN testOutcomeArray[5] := TRUE; END_IF;
+      10*:  950:  IF NOT Test_6.Finished AND NOT Test_6.FAILED THEN totalTests := totalTests + 1; Test_6(); END_IF;
+       10:  951:  IF Test_6.Finished THEN testOutcomeArray[6] := TRUE; END_IF;
+      10*:  952:  IF NOT Test_7.Finished AND NOT Test_7.FAILED THEN totalTests := totalTests + 1; Test_7(); END_IF;
+       10:  953:  IF Test_7.Finished THEN testOutcomeArray[7] := TRUE; END_IF;
+      10*:  954:  IF NOT Test_8.Finished AND NOT Test_8.FAILED THEN totalTests := totalTests + 1; Test_8(); END_IF;
+       10:  955:  IF Test_8.Finished THEN testOutcomeArray[8] := TRUE; END_IF;
+      10*:  956:  IF NOT Test_9.Finished AND NOT Test_9.FAILED THEN totalTests := totalTests + 1; Test_9(); END_IF;
+       10:  957:  IF Test_9.Finished THEN testOutcomeArray[9] := TRUE; END_IF;
+      10*:  958:  IF NOT Test_10.Finished AND NOT Test_10.FAILED THEN totalTests := totalTests + 1; Test_10(); END_IF;
+       10:  959:  IF Test_10.Finished THEN testOutcomeArray[10] := TRUE; END_IF;
+      10*:  960:  IF NOT Test_11.Finished AND NOT Test_11.FAILED THEN totalTests := totalTests + 1; Test_11(); END_IF;
+       10:  961:  IF Test_11.Finished THEN testOutcomeArray[11] := TRUE; END_IF;
+      10*:  962:  IF NOT Test_12.Finished AND NOT Test_12.FAILED THEN totalTests := totalTests + 1; Test_12(); END_IF;
+       10:  963:  IF Test_12.Finished THEN testOutcomeArray[12] := TRUE; END_IF;
+      10*:  964:  IF NOT Test_13.Finished AND NOT Test_13.FAILED THEN totalTests := totalTests + 1; Test_13(); END_IF;
+       10:  965:  IF Test_13.Finished THEN testOutcomeArray[13] := TRUE; END_IF;
+      10*:  966:  IF NOT Test_14.Finished AND NOT Test_14.FAILED THEN totalTests := totalTests + 1; Test_14(); END_IF;
+       10:  967:  IF Test_14.Finished THEN testOutcomeArray[14] := TRUE; END_IF;
+      10*:  968:  IF NOT Test_15.Finished AND NOT Test_15.FAILED THEN totalTests := totalTests + 1; Test_15(); END_IF;
+       10:  969:  IF Test_15.Finished THEN testOutcomeArray[15] := TRUE; END_IF;
+      10*:  970:  IF NOT Test_16.Finished AND NOT Test_16.FAILED THEN totalTests := totalTests + 1; Test_16(); END_IF;
+       10:  971:  IF Test_16.Finished THEN testOutcomeArray[16] := TRUE; END_IF;
+      10*:  972:  IF NOT Test_17.Finished AND NOT Test_17.FAILED THEN totalTests := totalTests + 1; Test_17(); END_IF;
+       10:  973:  IF Test_17.Finished THEN testOutcomeArray[17] := TRUE; END_IF;
+        -:  974:
+       10:  975:  passedTests := 0;
+        -:  976:  FOR i:=0 TO 17 DO
+     190*:  977:    IF testOutcomeArray[i]=TRUE THEN passedTests := passedTests+1; END_IF;
+      190:  978:  END_FOR;
+        -:  979:END_PROGRAM
+      180:  980:
+        -:  981:
+        -:  982:
+       10:  983:CONFIGURATION Config0
+        -:  984:
+       10:  985:  RESOURCE Res0 ON PLC
+       10:  986:    TASK task0(INTERVAL := T#100ms,PRIORITY := 0);
+        -:  987:    PROGRAM instance0 WITH task0 : TestRunnerProgram;
+        -:  988:  END_RESOURCE
+        -:  989:END_CONFIGURATION
+        -:  990:
+        -:  991:

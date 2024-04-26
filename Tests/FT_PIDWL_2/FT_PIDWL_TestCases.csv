@@ -1,0 +1,49 @@
+test0, state0, i, FT_PIDWL.IN, 0.0
+test0, state0, i, FT_PIDWL.KP, 1.0
+test0, state0, i, FT_PIDWL.TN, 1.0
+test0, state0, i, FT_PIDWL.TV, 1.0
+test0, state0, i, FT_PIDWL.LIM_L, -1.0E38
+test0, state0, i, FT_PIDWL.LIM_H, 1.0E38
+test0, state0, i, FT_PIDWL.RST, TRUE
+test0, state0, o, FT_PIDWL.Y, 0.0
+test0, state0, o, FT_PIDWL.LIM, FALSE
+
+test0, state1, i, FT_PIDWL.IN, 1.0
+test0, state1, i, FT_PIDWL.KP, 1.0
+test0, state1, i, FT_PIDWL.TN, 0.0
+test0, state1, i, FT_PIDWL.TV, 1.0
+test0, state1, i, FT_PIDWL.LIM_L, -1.0E38
+test0, state1, i, FT_PIDWL.LIM_H, 1.0E38
+test0, state1, i, FT_PIDWL.RST, FALSE
+test0, state1, o, FT_PIDWL.Y, 1.0
+test0, state1, o, FT_PIDWL.LIM, FALSE
+
+test0, state2, i, FT_PIDWL.IN, 1.0
+test0, state2, i, FT_PIDWL.KP, 2.0
+test0, state2, i, FT_PIDWL.TN, 1.0
+test0, state2, i, FT_PIDWL.TV, 1.0
+test0, state2, i, FT_PIDWL.LIM_L, -1.0E38
+test0, state2, i, FT_PIDWL.LIM_H, 1.0E38
+test0, state2, i, FT_PIDWL.RST, FALSE
+test0, state2, o, FT_PIDWL.Y, 2.0
+test0, state2, o, FT_PIDWL.LIM, FALSE
+
+test1, state0, i, FT_PIDWL.IN, 0.0
+test1, state0, i, FT_PIDWL.KP, 1.0
+test1, state0, i, FT_PIDWL.TN, 1.0
+test1, state0, i, FT_PIDWL.TV, 2.0
+test1, state0, i, FT_PIDWL.LIM_L, -1.0E38
+test1, state0, i, FT_PIDWL.LIM_H, 1.0E38
+test1, state0, i, FT_PIDWL.RST, TRUE
+test1, state0, o, FT_PIDWL.Y, 0.0
+test1, state0, o, FT_PIDWL.LIM, FALSE
+
+test1, state1, i, FT_PIDWL.IN, 1.0
+test1, state1, i, FT_PIDWL.KP, 1.0
+test1, state1, i, FT_PIDWL.TN, 1.0
+test1, state1, i, FT_PIDWL.TV, 2.0
+test1, state1, i, FT_PIDWL.LIM_L, -1.0E38
+test1, state1, i, FT_PIDWL.LIM_H, 1.0E38
+test1, state1, i, FT_PIDWL.RST, FALSE
+test1, state1, o, FT_PIDWL.Y, 1.0
+test1, state1, o, FT_PIDWL.LIM, FALSE

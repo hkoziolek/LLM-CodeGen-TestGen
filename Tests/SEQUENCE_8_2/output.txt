@@ -1,0 +1,37 @@
+Ticks, #TotalTests, #TestsSuccessful
+Tick 1, 2, 0
+Tick 2, 4, 0
+0,0: TestBlock.Q0 = FALSE  actual=0.000000
+0,0: TestBlock.Q1 = FALSE  actual=0.000000
+0,0: TestBlock.Q2 = FALSE  actual=0.000000
+0,0: TestBlock.Q3 = FALSE  actual=0.000000
+0,0: TestBlock.Q4 = FALSE  actual=0.000000
+0,0: TestBlock.Q5 = FALSE  actual=0.000000
+0,0: TestBlock.Q6 = FALSE  actual=0.000000
+0,0: TestBlock.Q7 = FALSE  actual=0.000000
+0,0: TestBlock.QX = FALSE  actual=0.000000
+0,0: TestBlock.RUN = FALSE  actual=0.000000
+0,0: TestBlock._STEP = -1  actual=-1.000000
+0,0: TestBlock.STATUS = 110  actual=110.000000
+1,0: TestBlock.Q0 = TRUE  actual=1.000000
+1,0: TestBlock.Q1 = FALSE  actual=0.000000
+1,0: TestBlock.Q2 = FALSE  actual=0.000000
+1,0: TestBlock.Q3 = FALSE  actual=0.000000
+1,0: TestBlock.Q4 = FALSE  actual=0.000000
+1,0: TestBlock.Q5 = FALSE  actual=0.000000
+1,0: TestBlock.Q6 = FALSE  actual=0.000000
+1,0: TestBlock.Q7 = FALSE  actual=0.000000
+1,0: TestBlock.QX = TRUE  actual=1.000000
+1,0: TestBlock.RUN = TRUE  actual=1.000000
+1,0: TestBlock._STEP = 0  actual=0.000000
+1,0: TestBlock.STATUS = 111  actual=111.000000
+Tick 3, 6, 2
+Tick 4, 6, 2
+Tick 5, 6, 2
+Tick 6, 6, 2
+Tick 7, 6, 2
+Tick 8, 6, 2
+Tick 9, 6, 2
+Tick 10, 6, 2
+Program ended.
+Statement coverage for SEQUENCE_8: 58.57142857142858%

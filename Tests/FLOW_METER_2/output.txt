@@ -1,0 +1,19 @@
+Ticks, #TotalTests, #TestsSuccessful
+Tick 1, 6, 0
+Tick 2, 12, 0
+0,0: TestBlock.F = 0.0  actual=0.000000
+1,0: TestBlock.F = 0.0  actual=0.000000
+2,0: TestBlock.F = 0.0  actual=0.000000
+3,0: TestBlock.F = 1.5  actual=0.000000
+4,0: TestBlock.F = 0.0  actual=0.000000
+5,0: TestBlock.F = 1.5  actual=27000.000000
+Tick 3, 18, 6
+Tick 4, 18, 6
+Tick 5, 18, 6
+Tick 6, 18, 6
+Tick 7, 18, 6
+Tick 8, 18, 6
+Tick 9, 18, 6
+Tick 10, 18, 6
+Program ended.
+Statement coverage for FLOW_METER: 98.50746268656717%

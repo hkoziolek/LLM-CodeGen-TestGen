@@ -1,0 +1,25 @@
+Ticks, #TotalTests, #TestsSuccessful
+Tick 1, 2, 0
+Tick 2, 4, 0
+0,0: TestBlock.Q0 = TRUE  actual=1.000000
+0,0: TestBlock.Q1 = TRUE  actual=1.000000
+0,0: TestBlock.Q2 = TRUE  actual=1.000000
+0,0: TestBlock.Q3 = TRUE  actual=1.000000
+0,0: TestBlock.CNT = 0  actual=1.000000
+0,0: TestBlock.RUN = TRUE  actual=1.000000
+1,0: TestBlock.Q0 = TRUE  actual=1.000000
+1,0: TestBlock.Q1 = TRUE  actual=1.000000
+1,0: TestBlock.Q2 = TRUE  actual=1.000000
+1,0: TestBlock.Q3 = TRUE  actual=1.000000
+1,0: TestBlock.CNT = 0  actual=1.000000
+1,0: TestBlock.RUN = TRUE  actual=1.000000
+Tick 3, 6, 0
+Tick 4, 6, 0
+Tick 5, 6, 0
+Tick 6, 6, 0
+Tick 7, 6, 0
+Tick 8, 6, 0
+Tick 9, 6, 0
+Tick 10, 6, 0
+Program ended.
+Statement coverage for GEN_BIT: 97.46835443037975%

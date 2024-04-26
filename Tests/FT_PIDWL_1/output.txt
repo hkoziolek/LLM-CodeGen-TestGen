@@ -1,0 +1,21 @@
+Ticks, #TotalTests, #TestsSuccessful
+Tick 1, 4, 0
+Tick 2, 8, 0
+0,0: TestBlock.Y = 0.0  actual=0.000000
+0,0: TestBlock.LIM = FALSE  actual=0.000000
+1,0: TestBlock.Y = 2.0  actual=0.000000
+1,0: TestBlock.LIM = FALSE  actual=0.000000
+2,0: TestBlock.Y = 2.0  actual=0.000000
+2,0: TestBlock.LIM = FALSE  actual=0.000000
+3,0: TestBlock.Y = 1.0  actual=0.000000
+3,0: TestBlock.LIM = TRUE  actual=0.000000
+Tick 3, 12, 4
+Tick 4, 12, 4
+Tick 5, 12, 4
+Tick 6, 12, 4
+Tick 7, 12, 4
+Tick 8, 12, 4
+Tick 9, 12, 4
+Tick 10, 12, 4
+Program ended.
+Statement coverage for FT_PIDWL: 91.83673469387756%

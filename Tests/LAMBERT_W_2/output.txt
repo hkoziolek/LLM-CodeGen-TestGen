@@ -1,0 +1,28 @@
+Ticks, #TotalTests, #TestsSuccessful
+Tick 1, 15, 0
+Tick 2, 30, 0
+0,0: TestBlock.OUT = -1000.0  actual=-1000.000000
+1,0: TestBlock.OUT = 0.0  actual=0.000000
+2,0: TestBlock.OUT = 0.35173371124919584  actual=0.351711
+3,0: TestBlock.OUT = 5.249602852401596  actual=4.672841
+4,0: TestBlock.OUT = 5.252322176165984  actual=4.674487
+5,0: TestBlock.OUT = 5.249999989522481  actual=5.249603
+6,0: TestBlock.OUT = -1000.0  actual=-1000.000000
+7,0: TestBlock.OUT = -1000.0  actual=-1000.000000
+8,0: TestBlock.OUT = -0.35173371124919584  actual=-1000.000000
+9,0: TestBlock.OUT = 0.5671432904097838  actual=0.567079
+10,0: TestBlock.OUT = 0.8526055020137255  actual=0.852532
+11,0: TestBlock.OUT = -0.11183255915839141  actual=-0.111539
+12,0: TestBlock.OUT = -0.010050167084167949  actual=-0.010062
+13,0: TestBlock.OUT = -0.0010005003335835344  actual=-0.000969
+14,0: TestBlock.OUT = -0.00010000500033334732  actual=-0.000069
+Tick 3, 45, 15
+Tick 4, 45, 15
+Tick 5, 45, 15
+Tick 6, 45, 15
+Tick 7, 45, 15
+Tick 8, 45, 15
+Tick 9, 45, 15
+Tick 10, 45, 15
+Program ended.
+Statement coverage for LAMBERT_W: 97.5%

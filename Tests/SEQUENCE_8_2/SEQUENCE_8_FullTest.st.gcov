@@ -1,0 +1,673 @@
+        -:    0:Source:../ETFA-Tests2/SEQUENCE_8_FullTest.st
+        -:    0:Graph:Res0.gcno
+        -:    0:Data:Res0.gcda
+        -:    0:Runs:1
+        -:    1:FUNCTION BIT_OF_DWORD : BOOL
+        -:    2:  VAR_INPUT
+        -:    3:    IN : DWORD;
+        -:    4:    N : INT;
+        -:    5:  END_VAR
+        -:    6:
+    #####:    7:  BIT_OF_DWORD := (SHR(in,N) AND 16#00000001) > 0;
+        -:    8:  (* from OSCAT library; www.oscat.de  *)
+        -:    9:END_FUNCTION
+        -:   10:
+    #####:   11:FUNCTION SIGN_R : BOOL
+        -:   12:  VAR_INPUT
+    #####:   13:    IN : REAL;
+        -:   14:  END_VAR
+    #####:   15:
+    #####:   16:  SIGN_R := in < 0.0;
+    #####:   17:  (* from OSCAT library; www.oscat.de  *)
+    #####:   18:END_FUNCTION
+    #####:   19:
+    #####:   20:FUNCTION FLOOR : INT
+    #####:   21:  VAR_INPUT
+    #####:   22:    x : REAL;
+        -:   23:  END_VAR
+    #####:   24:
+    #####:   25:  FLOOR := REAL_TO_INT(X);
+    #####:   26:  IF INT_TO_REAL(FLOOR) > X THEN
+    #####:   27:  	floor := floor - 1;
+        -:   28:  END_IF;
+    #####:   29:  (* from OSCAT library; www.oscat.de  *)
+    #####:   30:END_FUNCTION
+        -:   31:
+    #####:   32:FUNCTION FLOOR2 : DINT
+    #####:   33:  VAR_INPUT
+    #####:   34:    x : REAL;
+    #####:   35:  END_VAR
+    #####:   36:
+    #####:   37:  FLOOR2 := REAL_TO_DINT(X);
+    #####:   38:  IF DINT_TO_REAL(FLOOR2) > X THEN
+    #####:   39:  	FLOOR2 := FLOOR2 - DINT#1;
+    #####:   40:  END_IF;
+    #####:   41:  (* from OSCAT library; www.oscat.de  *)
+    #####:   42:END_FUNCTION
+        -:   43:
+    #####:   44:FUNCTION MODR : REAL
+    #####:   45:  VAR_INPUT
+    #####:   46:    IN : REAL;
+    #####:   47:    DIVI : REAL;
+    #####:   48:  END_VAR
+        -:   49:
+    #####:   50:  IF divi = 0.0 THEN
+    #####:   51:  	MODR := 0.0;
+    #####:   52:  ELSE
+    #####:   53:  	MODR := in - DINT_TO_REAL(FLOOR2(in / divi)) * divi;
+    #####:   54:  END_IF;
+        -:   55:  (* from OSCAT library; www.oscat.de  *)
+    #####:   56:  (* FC FLOOR2 required *)
+        -:   57:END_FUNCTION
+        -:   58:
+    #####:   59:FUNCTION REVERSE : BYTE
+    #####:   60:  VAR_INPUT
+        -:   61:    IN : BYTE;
+    #####:   62:  END_VAR
+    #####:   63:
+    #####:   64:  reverse := SHL(in,7) OR SHR(in,7) OR (ROR(in,3) AND BYTE#2#01000100) OR (ROL(in,3) AND BYTE#2#00100010)
+    #####:   65:  	OR (SHL(in,1) AND BYTE#2#00010000) OR (SHR(in,1) AND BYTE#2#00001000);
+    #####:   66:
+    #####:   67:
+    #####:   68:  (* Fromm Oscat Library, www.oscat.de *)
+        -:   69:END_FUNCTION
+        -:   70:
+        -:   71:FUNCTION REFLECT : DWORD
+    #####:   72:  VAR_INPUT
+    #####:   73:    DI : DWORD;
+        -:   74:    L : INT;
+        -:   75:  END_VAR
+    #####:   76:  VAR
+        -:   77:    i : INT;
+    #####:   78:    _d : DWORD;
+    #####:   79:  END_VAR
+    #####:   80:
+    #####:   81:  _d := DI;
+    #####:   82:  FOR i := 1 TO L DO
+    #####:   83:  	REFLECT := SHL(REFLECT, 1) OR BOOL_TO_DWORD((_d AND DWORD#2#0000_0001) > DWORD#0); (* D.0 *)
+    #####:   84:  	_d := SHR(_d, 1);
+        -:   85:  END_FOR;
+    #####:   86:  REFLECT := REFLECT OR SHL(_d, L);
+    #####:   87:
+    #####:   88:
+        -:   89:  (* Fromm Oscat Library, www.oscat.de *)
+    #####:   90:END_FUNCTION
+        -:   91:
+    #####:   92:
+    #####:   93:FUNCTION BIT_LOAD_B : BYTE
+    #####:   94:  VAR_INPUT
+    #####:   95:    IN : BYTE;
+    #####:   96:    VAL : BOOL;
+        -:   97:    POS : INT;
+    #####:   98:  END_VAR
+        -:   99:
+    #####:  100:  IF VAL THEN
+    #####:  101:  	BIT_LOAD_B := in OR SHL(BYTE#1,pos);
+        -:  102:  ELSE
+    #####:  103:  	BIT_LOAD_B := in AND (NOT SHL(BYTE#1,pos));
+        -:  104:  END_IF;
+        -:  105:
+        -:  106:  (*From OSCAT Library, www.oscat.de*)
+    #####:  107:END_FUNCTION
+    #####:  108:
+    #####:  109:FUNCTION _BYTE_TO_INT : INT
+    #####:  110:  VAR_INPUT
+    #####:  111:    IN : BYTE;
+    #####:  112:  END_VAR
+    #####:  113:
+    #####:  114:  _BYTE_TO_INT := USINT_TO_INT(BYTE_TO_USINT(IN));
+    #####:  115:
+    #####:  116:  (*From OSCAT Library, www.oscat.de*)
+    #####:  117:END_FUNCTION
+    #####:  118:
+        -:  119:FUNCTION T_PLC_MS : UDINT
+        -:  120:  VAR
+    #####:  121:    tx : UDINT;
+    #####:  122:  END_VAR
+        -:  123:  VAR_INPUT
+    #####:  124:    debug : BOOL;
+    #####:  125:  END_VAR
+    #####:  126:  VAR
+    #####:  127:    N : INT := 0;
+    #####:  128:    offset : UDINT := 0;
+        -:  129:    temp : DWORD := 1;
+    #####:  130:  END_VAR
+    #####:  131:
+    #####:  132:  tx := 0;
+        2:  133:  {extern unsigned long __tick;
+    #####:  134:  extern unsigned long long common_ticktime__;
+        -:  135:  unsigned long long ticktime_ms = (common_ticktime__)/1000000;
+        -:  136:  UDINT plc_time = (UDINT)(ticktime_ms * (unsigned long long)__tick);
+        2:  137:  TX = plc_time}
+        4:  138:  T_PLC_MS := tx;
+        2:  139:  IF debug THEN
+       2*:  140:  	T_PLC_MS := (DWORD_TO_UDINT(SHL(UDINT_TO_DWORD(T_PLC_MS),N) OR SHL(temp,N))-1) + OFFSET;
+        2:  141:  END_IF;
+        2:  142:  
+    #####:  143:
+        2:  144:  IF debug THEN
+    #####:  145:  	T_PLC_MS := (DWORD_TO_UDINT(SHL(UDINT_TO_DWORD(T_PLC_MS),N) OR SHL(temp,N))-1) + OFFSET;
+       2*:  146:  END_IF;
+    #####:  147:
+    #####:  148:  (* Original Code:
+        -:  149:  tx := TIME();
+    #####:  150:  T_PLC_MS := TIME_TO_DWORD(Tx);
+    #####:  151:  IF debug THEN
+        -:  152:  	T_PLC_MS := (SHL(T_PLC_MS,N) OR SHL(DWORD#1,N)-1) + OFFSET;
+        -:  153:  END_IF;
+    #####:  154:  *)
+    #####:  155:
+        -:  156:  (* From OSCAT library, www.oscat.de
+        -:  157:
+        -:  158:  this is a temporary T_PLC_MS FB until OpenPLC gets it´s own time() functionality *)
+    #####:  159:
+        -:  160:  (* PLC_TIME and Global variables PLC_SCAN_CYCL and PLC_CYCL_TIME required *)
+        -:  161:END_FUNCTION
+        2:  162:
+        -:  163:
+        2:  164:FUNCTION T_PLC_US : UDINT
+        2:  165:  VAR
+    #####:  166:    tx : UDINT;
+        -:  167:  END_VAR
+        2:  168:  VAR_INPUT
+        -:  169:    debug : BOOL;
+        -:  170:  END_VAR
+        -:  171:  VAR
+        -:  172:    N : INT := 0;
+    #####:  173:    offset : UDINT := 0;
+        -:  174:    temp : DWORD := 1;
+        -:  175:  END_VAR
+        -:  176:
+    #####:  177:  T_PLC_US := tx*1000;
+    #####:  178:  IF debug THEN
+    #####:  179:  	T_PLC_US := (DWORD_TO_UDINT(SHL(UDINT_TO_DWORD(T_PLC_US),N) OR SHL(temp,N))-1) + OFFSET;
+    #####:  180:  END_IF;
+    #####:  181:
+    #####:  182:  (* Original Code:
+    #####:  183:  tx := TIME();
+        -:  184:  T_PLC_US := TIME_TO_DWORD(Tx)*1000;
+    #####:  185:  IF debug THEN
+    #####:  186:  	T_PLC_US := (SHL(T_PLC_US,N) OR SHL(DWORD#1,N)-1) + OFFSET;
+    #####:  187:  END_IF;
+    #####:  188:  *)
+    #####:  189:
+    #####:  190:  (* From OSCAT library, www.oscat.de
+        -:  191:
+        -:  192:  this is a temporary T_PLC_US FB until OpenPLC gets it´s own time() functionality *)
+    #####:  193:
+        -:  194:  (* PLC_TIME and Global variables PLC_SCAN_CYCL and PLC_CYCL_TIME required *)
+        -:  195:END_FUNCTION
+    #####:  196:
+        -:  197:
+    #####:  198:
+    #####:  199:FUNCTION_BLOCK FT_DERIV
+    #####:  200:  VAR_INPUT
+        -:  201:    IN : REAL;
+    #####:  202:    K : REAL := 1.0;
+        -:  203:    RUN : BOOL := TRUE;
+        -:  204:  END_VAR
+        -:  205:  VAR_OUTPUT
+    #####:  206:    OUT : REAL;
+    #####:  207:  END_VAR
+    #####:  208:  VAR
+    #####:  209:    old : REAL;
+    #####:  210:    tx : UDINT;
+    #####:  211:    last : UDINT;
+    #####:  212:    init : BOOL;
+    #####:  213:    tc : REAL;
+    #####:  214:  END_VAR
+    #####:  215:
+    #####:  216:  tx:= T_PLC_US(en:=true);
+    #####:  217:  tc := UDINT_TO_REAL(tx - last);
+    #####:  218:
+        -:  219:  (* init on firsat startup *)
+    #####:  220:  IF NOT init THEN
+    #####:  221:  	init := TRUE;
+    #####:  222:  	old := in;
+    #####:  223:  ELSIF run AND tc > 0.0 THEN
+    #####:  224:  	out := (in - old) / tc * 1000000.0 * K;
+    #####:  225:  	old := in;
+        -:  226:  ELSE
+    #####:  227:  	out := 0.0;
+    #####:  228:  END_IF;
+        -:  229:
+    #####:  230:  last := tx;
+        -:  231:
+    #####:  232:  (* From OSCAT Library, www.oscat.de *)
+        -:  233:  (* T_PLC_US, required *)
+    #####:  234:END_FUNCTION_BLOCK
+    #####:  235:
+        -:  236:
+        -:  237:FUNCTION_BLOCK FT_PIWL
+        -:  238:  VAR_INPUT
+        -:  239:    IN : REAL;
+        -:  240:    KP : REAL := 1.0;
+        -:  241:    KI : REAL := 1.0;
+    #####:  242:    LIM_L : REAL := -1.0E38;
+    #####:  243:    LIM_H : REAL := 1.0E38;
+    #####:  244:    RST : BOOL;
+    #####:  245:  END_VAR
+    #####:  246:  VAR_OUTPUT
+    #####:  247:    Y : REAL;
+    #####:  248:    LIM : BOOL;
+    #####:  249:  END_VAR
+    #####:  250:  VAR
+    #####:  251:    init : BOOL;
+    #####:  252:    tx : UDINT;
+    #####:  253:    tc : REAL;
+    #####:  254:    t_last : UDINT;
+    #####:  255:    in_last : REAL;
+    #####:  256:    i : REAL;
+    #####:  257:    p : REAL;
+    #####:  258:  END_VAR
+    #####:  259:
+    #####:  260:  IF NOT init OR RST THEN
+    #####:  261:  	init := TRUE;
+    #####:  262:  	in_last := in;
+    #####:  263:  		t_last := T_PLC_US(en:=true);
+    #####:  264:  	i := 0.0;
+    #####:  265:  	tc := 0.0;
+    #####:  266:  ELSE
+    #####:  267:  	(* read last cycle time in Microseconds *)
+    #####:  268:  		tx := T_PLC_US(en:=true);
+    #####:  269:  	tc := UDINT_TO_REAL(tx - t_last);
+    #####:  270:  	t_last := tx;
+        -:  271:
+        -:  272:  	(* calculate proportional part *)
+    #####:  273:  	p := KP * IN;
+        -:  274:
+        -:  275:  	(* run integrator *)
+    #####:  276:  	i := (IN + in_last) * 5.0E-7 * KI * tc + i;
+    #####:  277:  	in_last := IN;
+        -:  278:
+        -:  279:  	(* calculate output Y *)
+    #####:  280:  	Y := p + i;
+        -:  281:
+        -:  282:  	(* check output for limits *)
+    #####:  283:  	IF Y >= LIM_H THEN
+    #####:  284:  		Y := LIM_H;
+    #####:  285:  		IF ki <> 0.0 THEN
+    #####:  286:  			i := LIM_H - p;
+        -:  287:  		ELSE
+    #####:  288:  			i := 0.0;
+        -:  289:  		END_IF;
+    #####:  290:  		LIM := TRUE;
+    #####:  291:  	ELSIF Y <= LIM_L THEN
+    #####:  292:  		Y := LIM_L;
+    #####:  293:  		IF ki <> 0.0 THEN
+    #####:  294:  			i := LIM_L - p;
+        -:  295:  		ELSE
+    #####:  296:  			i := 0.0;
+        -:  297:  		END_IF;
+    #####:  298:  		LIM := TRUE;
+        -:  299:  	ELSE
+    #####:  300:  		LIM := FALSE;
+        -:  301:  	END_IF;
+        -:  302:  END_IF;
+        -:  303:
+    #####:  304:  (* From OSCAT Library, www.oscat.de *)
+        -:  305:  (* T_PLC_US required *)
+    #####:  306:END_FUNCTION_BLOCK
+    #####:  307:
+        -:  308:
+        -:  309:FUNCTION_BLOCK INTEGRATE
+        -:  310:  VAR_INPUT
+        -:  311:    _E : BOOL := TRUE;
+        -:  312:    X : REAL;
+        -:  313:    K : REAL := 1.0;
+    #####:  314:  END_VAR
+    #####:  315:  VAR_IN_OUT
+    #####:  316:    Y : REAL;
+    #####:  317:  END_VAR
+    #####:  318:  VAR
+    #####:  319:    x_last : REAL;
+    #####:  320:    init : BOOL;
+    #####:  321:    last : UDINT;
+    #####:  322:    tx : UDINT;
+    #####:  323:  END_VAR
+    #####:  324:
+    #####:  325:  tx:= T_PLC_MS(en:=true);
+        -:  326:
+    #####:  327:  IF NOT init THEN
+    #####:  328:  	init := TRUE;
+    #####:  329:  	X_last := X;
+    #####:  330:  ELSIF _E THEN
+    #####:  331:  	Y := (X + X_LAST) * 0.5E-3 * UDINT_TO_REAL(tx-last) * K + Y;
+    #####:  332:  	X_last := X;
+        -:  333:  END_IF;
+    #####:  334:  last := tx;
+    #####:  335:
+    #####:  336:  (* From OSCAT Library, www.oscat.de *)
+        -:  337:  (* T_PLC_MS required *)
+    #####:  338:END_FUNCTION_BLOCK
+    #####:  339:
+        -:  340:FUNCTION_BLOCK SEQUENCE_8
+        -:  341:  VAR_INPUT
+        -:  342:    IN0 : BOOL := TRUE;
+        -:  343:    IN1 : BOOL := TRUE;
+        -:  344:    IN2 : BOOL := TRUE;
+        -:  345:    IN3 : BOOL := TRUE;
+        2:  346:    IN4 : BOOL := TRUE;
+       2*:  347:    IN5 : BOOL := TRUE;
+       2*:  348:    IN6 : BOOL := TRUE;
+       2*:  349:    IN7 : BOOL := TRUE;
+       2*:  350:    START : BOOL;
+       2*:  351:    RST : BOOL;
+       2*:  352:    WAIT0 : TIME;
+       2*:  353:    DELAY0 : TIME;
+       2*:  354:    WAIT1 : TIME;
+       2*:  355:    DELAY1 : TIME;
+       2*:  356:    WAIT2 : TIME;
+       2*:  357:    DELAY2 : TIME;
+       2*:  358:    WAIT3 : TIME;
+       2*:  359:    DELAY3 : TIME;
+       2*:  360:    WAIT4 : TIME;
+       2*:  361:    DELAY4 : TIME;
+       2*:  362:    WAIT5 : TIME;
+       2*:  363:    DELAY5 : TIME;
+       2*:  364:    WAIT6 : TIME;
+       2*:  365:    DELAY6 : TIME;
+       2*:  366:    WAIT7 : TIME;
+       2*:  367:    DELAY7 : TIME;
+       2*:  368:    STOP_ON_ERROR : BOOL;
+       2*:  369:  END_VAR
+       2*:  370:  VAR_OUTPUT
+       2*:  371:    Q0 : BOOL;
+       2*:  372:    Q1 : BOOL;
+       2*:  373:    Q2 : BOOL;
+       2*:  374:    Q3 : BOOL;
+       2*:  375:    Q4 : BOOL;
+       2*:  376:    Q5 : BOOL;
+       2*:  377:    Q6 : BOOL;
+       2*:  378:    Q7 : BOOL;
+       2*:  379:    QX : BOOL;
+       2*:  380:    RUN : BOOL;
+       2*:  381:    _STEP : INT := -1;
+       2*:  382:    STATUS : BYTE;
+       2*:  383:  END_VAR
+       2*:  384:  VAR
+       2*:  385:    last : TIME;
+       2*:  386:    edge : BOOL;
+       2*:  387:    tx : TIME;
+       2*:  388:    init : BOOL;
+       2*:  389:  END_VAR
+       2*:  390:
+       4*:  391:  tx:= UDINT_TO_TIME(T_PLC_MS(en:=true));
+        2:  392:
+        -:  393:  (* initialize on startup *)
+        2:  394:  IF NOT init THEN
+        2:  395:  	last := tx;
+        2:  396:  	init := TRUE;
+        4:  397:  	status := BYTE#110;
+    #####:  398:  END_IF;
+    #####:  399:
+        -:  400:  (* asynchronous reset *)
+        2:  401:  IF rst THEN
+        3:  402:  	_step := -1;
+        1:  403:  	Q0 := FALSE;
+        1:  404:  	Q1 := FALSE;
+        1:  405:  	Q2 := FALSE;
+        1:  406:  	Q3 := FALSE;
+        1:  407:  	Q4 := FALSE;
+        1:  408:  	Q5 := FALSE;
+        1:  409:  	Q6 := FALSE;
+        1:  410:  	Q7 := FALSE;
+        1:  411:  	status := BYTE#110;
+        1:  412:  	run := FALSE;
+        1:  413:
+        -:  414:  (* edge on start input restarts the sequencer *)
+        -:  415:  ELSIF start AND NOT edge THEN
+        1:  416:  	_step := 0;
+        1:  417:  	last := tx;
+        1:  418:  	status := BYTE#111;
+        1:  419:  	Q0 := FALSE;
+        1:  420:  	Q1 := FALSE;
+        1:  421:  	Q2 := FALSE;
+        1:  422:  	Q3 := FALSE;
+        1:  423:  	Q4 := FALSE;
+        1:  424:  	Q5 := FALSE;
+        1:  425:  	Q6 := FALSE;
+        1:  426:  	Q7 := FALSE;
+        1:  427:  	run := TRUE;
+        -:  428:  END_IF;
+        2:  429:  edge := start;
+        -:  430:
+        -:  431:  (* check if stop on error is necessary *)
+       2*:  432:  IF status > BYTE#0 AND status < BYTE#100 AND stop_on_error THEN RETURN; END_IF;
+        -:  433:
+        -:  434:  (* sequence is running *)
+        2:  435:  IF run AND _step = 0 THEN
+        1:  436:  	IF NOT q0 AND in0 AND tx - last <= wait0 THEN
+        1:  437:  		Q0 := TRUE;
+        1:  438:  		last := tx;
+    #####:  439:  	ELSIF NOT q0 AND tx - last > wait0 THEN
+    #####:  440:  		status := BYTE#1;
+    #####:  441:  		run := FALSE;
+    #####:  442:  	ELSIF q0 AND tx - last >= delay0 THEN
+    #####:  443:  		_step := 1;
+    #####:  444:  		last := tx;
+        -:  445:  	END_IF;
+        -:  446:  END_IF;
+        2:  447:  IF run AND _step = 1 THEN
+    #####:  448:  	IF NOT q1 AND in1 AND tx - last <= wait1 THEN
+    #####:  449:  		Q0 := FALSE;
+    #####:  450:  		Q1 := TRUE;
+    #####:  451:  		last := tx;
+    #####:  452:  	ELSIF NOT q1 AND Tx - last > wait1 THEN
+    #####:  453:  		status := BYTE#2;
+    #####:  454:  		q0 := FALSE;
+    #####:  455:  		run := FALSE;
+    #####:  456:  	ELSIF q1 AND tx - last >= delay1 THEN
+    #####:  457:  		_step := 2;
+    #####:  458:  		last := tx;
+        -:  459:  	END_IF;
+        -:  460:  END_IF;
+        2:  461:  IF run AND _step = 2 THEN
+    #####:  462:  	IF NOT q2 AND in2 AND tx - last <= wait2 THEN
+    #####:  463:  		Q1 := FALSE;
+    #####:  464:  		Q2 := TRUE;
+    #####:  465:  		last := tx;
+    #####:  466:  	ELSIF NOT q2 AND Tx - last > wait2 THEN
+    #####:  467:  		status := BYTE#3;
+    #####:  468:  		q1 := FALSE;
+    #####:  469:  		run := FALSE;
+    #####:  470:  	ELSIF q2 AND tx - last >= delay2 THEN
+    #####:  471:  		_step := 3;
+    #####:  472:  		last := tx;
+        -:  473:  	END_IF;
+        -:  474:  END_IF;
+        2:  475:  IF run AND _step = 3 THEN
+    #####:  476:  	IF NOT q3 AND in3 AND tx - last <= wait3 THEN
+    #####:  477:  		Q2 := FALSE;
+    #####:  478:  		Q3 := TRUE;
+    #####:  479:  		last := tx;
+    #####:  480:  	ELSIF NOT q3 AND Tx - last > wait3 THEN
+    #####:  481:  		status := BYTE#4;
+    #####:  482:  		q2 := FALSE;
+    #####:  483:  		run := FALSE;
+    #####:  484:  	ELSIF q3 AND tx - last >= delay3 THEN
+    #####:  485:  		_step := 4;
+    #####:  486:  		last := tx;
+        -:  487:  	END_IF;
+        -:  488:  END_IF;
+        2:  489:  IF run AND _step = 4 THEN
+    #####:  490:  	IF NOT q4 AND in4 AND tx - last <= wait4 THEN
+    #####:  491:  		Q3 := FALSE;
+    #####:  492:  		Q4 := TRUE;
+    #####:  493:  		last := tx;
+    #####:  494:  	ELSIF NOT q4 AND Tx - last > wait4 THEN
+    #####:  495:  		status := BYTE#5;
+    #####:  496:  		q3 := FALSE;
+    #####:  497:  		run := FALSE;
+    #####:  498:  	ELSIF q4 AND tx - last >= WAIT4 THEN
+    #####:  499:  		_step := 5;
+    #####:  500:  		last := tx;
+        -:  501:  	END_IF;
+        -:  502:  END_IF;
+        2:  503:  IF run AND _step = 5 THEN
+    #####:  504:  	IF NOT q5 AND in5 AND tx - last <= DELAY4 THEN
+    #####:  505:  		Q4 := FALSE;
+    #####:  506:  		Q5 := TRUE;
+    #####:  507:  		last := tx;
+    #####:  508:  	ELSIF NOT q5 AND Tx - last > DELAY4 THEN
+    #####:  509:  		status := BYTE#6;
+    #####:  510:  		q4 := FALSE;
+    #####:  511:  		run := FALSE;
+    #####:  512:  	ELSIF q5 AND tx - last >= WAIT5 THEN
+    #####:  513:  		_step := 6;
+    #####:  514:  		last := tx;
+        -:  515:  	END_IF;
+        -:  516:  END_IF;
+        2:  517:  IF run AND _step = 6 THEN
+    #####:  518:  	IF NOT q6 AND in6 AND tx - last <= DELAY5 THEN
+    #####:  519:  		Q5 := FALSE;
+    #####:  520:  		Q6 := TRUE;
+    #####:  521:  		last := tx;
+    #####:  522:  	ELSIF NOT q6 AND Tx - last > DELAY5 THEN
+    #####:  523:  		status := BYTE#7;
+    #####:  524:  		q5 := FALSE;
+    #####:  525:  		run := FALSE;
+    #####:  526:  	ELSIF q6 AND tx - last >= WAIT6 THEN
+    #####:  527:  		_step := 7;
+    #####:  528:  		last := tx;
+        -:  529:  	END_IF;
+        -:  530:  END_IF;
+        2:  531:  IF run AND _step = 7 THEN
+    #####:  532:  	IF NOT q7 AND in7 AND tx - last <= DELAY6 THEN
+    #####:  533:  		Q6 := FALSE;
+    #####:  534:  		Q7 := TRUE;
+    #####:  535:  		last := tx;
+    #####:  536:  	ELSIF NOT q7 AND Tx - last > DELAY6 THEN
+    #####:  537:  		status := BYTE#8;
+    #####:  538:  		q6 := FALSE;
+    #####:  539:  		run := FALSE;
+    #####:  540:  	ELSIF q7 AND tx - last >= WAIT7 THEN
+    #####:  541:  		_step := -1;
+    #####:  542:  		Q7 := FALSE;
+    #####:  543:  		Run := FALSE;
+    #####:  544:  		status := BYTE#110;
+        -:  545:  	END_IF;
+        -:  546:  END_IF;
+        2:  547:  QX := q0 OR q1 OR q2 OR q3 OR q4 OR q5 OR q6 OR q7;
+        -:  548:
+        2:  549:  (*From OSCAT Library, www.oscat.de *)
+        -:  550:END_FUNCTION_BLOCK
+        2:  551:
+        2:  552:FUNCTION_BLOCK FB_TEST_0
+        -:  553:  VAR_OUTPUT
+        -:  554:    Finished : BOOL;
+        -:  555:    Failed : BOOL;
+        -:  556:  END_VAR
+        -:  557:  VAR
+        -:  558:    TestBlock : SEQUENCE_8;
+        1:  559:    TestState : INT;
+       1*:  560:    Timer : TON;
+       1*:  561:  END_VAR
+       1*:  562:
+       4*:  563:  Timer(IN:=TRUE, PT:= T#0s); (* placeholder for later usage *)
+        4:  564:  
+       4*:  565:  CASE testState OF
+        1:  566:    0:
+        3:  567:      IF (Timer.Q) THEN
+        1:  568:        TestBlock(IN0 := TRUE, IN1 := TRUE, IN2 := TRUE, IN3 := TRUE, IN4 := TRUE, IN5 := TRUE, IN6 := TRUE, IN7 := TRUE, START := FALSE, RST := TRUE, STOP_ON_ERROR := TRUE);
+        2:  569:        TestState:=TestState+1;
+        1:  570:      END_IF;
+        3:  571:      Timer(IN:=TRUE, PT:=T#0s);
+        6:  572:    1:
+       4*:  573:      IF (Timer.Q) THEN
+       1*:  574:      {printf("0,0: TestBlock.Q0 = FALSE  actual=%lf\n", (double)__GET_VAR(data__->TESTBLOCK.Q0,));}
+        2:  575:      {printf("0,0: TestBlock.Q1 = FALSE  actual=%lf\n", (double)__GET_VAR(data__->TESTBLOCK.Q1,));}
+        2:  576:      {printf("0,0: TestBlock.Q2 = FALSE  actual=%lf\n", (double)__GET_VAR(data__->TESTBLOCK.Q2,));}
+        5:  577:      {printf("0,0: TestBlock.Q3 = FALSE  actual=%lf\n", (double)__GET_VAR(data__->TESTBLOCK.Q3,));}
+        2:  578:      {printf("0,0: TestBlock.Q4 = FALSE  actual=%lf\n", (double)__GET_VAR(data__->TESTBLOCK.Q4,));}
+        2:  579:      {printf("0,0: TestBlock.Q5 = FALSE  actual=%lf\n", (double)__GET_VAR(data__->TESTBLOCK.Q5,));}
+        1:  580:      {printf("0,0: TestBlock.Q6 = FALSE  actual=%lf\n", (double)__GET_VAR(data__->TESTBLOCK.Q6,));}
+        1:  581:      {printf("0,0: TestBlock.Q7 = FALSE  actual=%lf\n", (double)__GET_VAR(data__->TESTBLOCK.Q7,));}
+        1:  582:      {printf("0,0: TestBlock.QX = FALSE  actual=%lf\n", (double)__GET_VAR(data__->TESTBLOCK.QX,));}
+        1:  583:      {printf("0,0: TestBlock.RUN = FALSE  actual=%lf\n", (double)__GET_VAR(data__->TESTBLOCK.RUN,));}
+        1:  584:      {printf("0,0: TestBlock._STEP = -1  actual=%lf\n", (double)__GET_VAR(data__->TESTBLOCK._STEP,));}
+        1:  585:      {printf("0,0: TestBlock.STATUS = 110  actual=%lf\n", (double)__GET_VAR(data__->TESTBLOCK.STATUS,));}
+       2*:  586:        IF NOT(TestBlock.Q0 = FALSE AND TestBlock.Q1 = FALSE AND TestBlock.Q2 = FALSE AND TestBlock.Q3 = FALSE AND TestBlock.Q4 = FALSE AND TestBlock.Q5 = FALSE AND TestBlock.Q6 = FALSE AND TestBlock.Q7 = FALSE AND TestBlock.QX = FALSE AND TestBlock.RUN = FALSE AND TestBlock._STEP = -1 AND TestBlock.STATUS = 110) THEN Failed := TRUE; END_IF;
+        1:  587:      END_IF;
+        1:  588:      Finished:=TRUE;
+        -:  589:  END_CASE;
+        -:  590:END_FUNCTION_BLOCK
+        -:  591:
+        3:  592:FUNCTION_BLOCK FB_TEST_1
+        -:  593:  VAR_OUTPUT
+        3:  594:    Finished : BOOL;
+        3:  595:    Failed : BOOL;
+        -:  596:  END_VAR
+        -:  597:  VAR
+        -:  598:    TestBlock : SEQUENCE_8;
+        -:  599:    TestState : INT;
+        -:  600:    Timer : TON;
+        -:  601:  END_VAR
+        1:  602:
+       4*:  603:  Timer(IN:=TRUE, PT:= T#0s); (* placeholder for later usage *)
+       4*:  604:  
+       4*:  605:  CASE testState OF
+       1*:  606:    0:
+        4:  607:      IF (Timer.Q) THEN
+       2*:  608:        TestBlock(IN0 := TRUE, IN1 := TRUE, IN2 := TRUE, IN3 := TRUE, IN4 := TRUE, IN5 := TRUE, IN6 := TRUE, IN7 := TRUE, START := TRUE, RST := FALSE, STOP_ON_ERROR := FALSE);
+        3:  609:        TestState:=TestState+1;
+        1:  610:      END_IF;
+        3:  611:      Timer(IN:=TRUE, PT:=T#0s);
+        3:  612:    1:
+        4:  613:      IF (Timer.Q) THEN
+        1:  614:      {printf("1,0: TestBlock.Q0 = TRUE  actual=%lf\n", (double)__GET_VAR(data__->TESTBLOCK.Q0,));}
+        5:  615:      {printf("1,0: TestBlock.Q1 = FALSE  actual=%lf\n", (double)__GET_VAR(data__->TESTBLOCK.Q1,));}
+       2*:  616:      {printf("1,0: TestBlock.Q2 = FALSE  actual=%lf\n", (double)__GET_VAR(data__->TESTBLOCK.Q2,));}
+       2*:  617:      {printf("1,0: TestBlock.Q3 = FALSE  actual=%lf\n", (double)__GET_VAR(data__->TESTBLOCK.Q3,));}
+        2:  618:      {printf("1,0: TestBlock.Q4 = FALSE  actual=%lf\n", (double)__GET_VAR(data__->TESTBLOCK.Q4,));}
+        2:  619:      {printf("1,0: TestBlock.Q5 = FALSE  actual=%lf\n", (double)__GET_VAR(data__->TESTBLOCK.Q5,));}
+        4:  620:      {printf("1,0: TestBlock.Q6 = FALSE  actual=%lf\n", (double)__GET_VAR(data__->TESTBLOCK.Q6,));}
+        1:  621:      {printf("1,0: TestBlock.Q7 = FALSE  actual=%lf\n", (double)__GET_VAR(data__->TESTBLOCK.Q7,));}
+        1:  622:      {printf("1,0: TestBlock.QX = TRUE  actual=%lf\n", (double)__GET_VAR(data__->TESTBLOCK.QX,));}
+        1:  623:      {printf("1,0: TestBlock.RUN = TRUE  actual=%lf\n", (double)__GET_VAR(data__->TESTBLOCK.RUN,));}
+        1:  624:      {printf("1,0: TestBlock._STEP = 0  actual=%lf\n", (double)__GET_VAR(data__->TESTBLOCK._STEP,));}
+        1:  625:      {printf("1,0: TestBlock.STATUS = 111  actual=%lf\n", (double)__GET_VAR(data__->TESTBLOCK.STATUS,));}
+       2*:  626:        IF NOT(TestBlock.Q0 = TRUE AND TestBlock.Q1 = FALSE AND TestBlock.Q2 = FALSE AND TestBlock.Q3 = FALSE AND TestBlock.Q4 = FALSE AND TestBlock.Q5 = FALSE AND TestBlock.Q6 = FALSE AND TestBlock.Q7 = FALSE AND TestBlock.QX = TRUE AND TestBlock.RUN = TRUE AND TestBlock._STEP = 0 AND TestBlock.STATUS = 111) THEN Failed := TRUE; END_IF;
+        1:  627:      END_IF;
+        1:  628:      Finished:=TRUE;
+        -:  629:  END_CASE;
+        -:  630:END_FUNCTION_BLOCK
+        -:  631:
+        3:  632:
+        -:  633:PROGRAM TestRunnerProgram
+        3:  634:VAR
+        3:  635:  testResult AT %QX0.0 : BOOL := FALSE;
+        -:  636:END_VAR
+        -:  637:VAR
+        -:  638:  totalTests AT %QW0 : INT := 0;
+        -:  639:  passedTests AT %QW1 : INT := 0;
+        -:  640:END_VAR
+        -:  641:VAR
+        1:  642:  i: INT := 0;
+       1*:  643:  testOutcomeArray : ARRAY [0..1] OF BOOL;
+        1:  644:  Test_0: FB_TEST_0;
+       1*:  645:  Test_1: FB_TEST_1;
+        1:  646:END_VAR
+       1*:  647:
+       3*:  648:  IF NOT Test_0.Finished AND NOT Test_0.FAILED THEN totalTests := totalTests + 1; Test_0(); END_IF;
+      11*:  649:  IF Test_0.Finished THEN testOutcomeArray[0] := TRUE; END_IF;
+      10*:  650:  IF NOT Test_1.Finished AND NOT Test_1.FAILED THEN totalTests := totalTests + 1; Test_1(); END_IF;
+       10:  651:  IF Test_1.Finished THEN testOutcomeArray[1] := TRUE; END_IF;
+        1:  652:
+       10:  653:  passedTests := 0;
+        1:  654:  FOR i:=0 TO 1 DO
+      31*:  655:    IF testOutcomeArray[i]=TRUE THEN passedTests := passedTests+1; END_IF;
+       30:  656:  END_FOR;
+        -:  657:END_PROGRAM
+       20:  658:
+       10:  659:
+        -:  660:
+       10:  661:CONFIGURATION Config0
+        -:  662:
+       10:  663:  RESOURCE Res0 ON PLC
+       10:  664:    TASK task0(INTERVAL := T#100ms,PRIORITY := 0);
+        -:  665:    PROGRAM instance0 WITH task0 : TestRunnerProgram;
+        -:  666:  END_RESOURCE
+        -:  667:END_CONFIGURATION
+        -:  668:
+        -:  669:

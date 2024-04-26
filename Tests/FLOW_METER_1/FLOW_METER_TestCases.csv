@@ -1,0 +1,34 @@
+test0, ----, i, FLOW_METER.VX, 5.5
+test0, ----, i, FLOW_METER._E, TRUE
+test0, ----, i, FLOW_METER.RST, FALSE
+test0, ----, i, FLOW_METER.PULSE_MODE, FALSE
+test0, ----, i, FLOW_METER.UPDATE_TIME, t#2s
+test0, ----, o, FLOW_METER.F, 0.0
+
+test1, ----, i, FLOW_METER.VX, 2.5
+test1, ----, i, FLOW_METER._E, TRUE
+test1, ----, i, FLOW_METER.RST, TRUE
+test1, ----, i, FLOW_METER.PULSE_MODE, TRUE
+test1, ----, i, FLOW_METER.UPDATE_TIME, t#3s
+test1, ----, o, FLOW_METER.F, 0.0
+
+test2, ----, i, FLOW_METER.VX, 3.5
+test2, ----, i, FLOW_METER._E, FALSE
+test2, ----, i, FLOW_METER.RST, FALSE
+test2, ----, i, FLOW_METER.PULSE_MODE, FALSE
+test2, ----, i, FLOW_METER.UPDATE_TIME, t#4s
+test2, ----, o, FLOW_METER.F, 0.0
+
+test3, ----, i, FLOW_METER.VX, 1.5
+test3, ----, i, FLOW_METER._E, TRUE
+test3, ----, i, FLOW_METER.RST, TRUE
+test3, ----, i, FLOW_METER.PULSE_MODE, TRUE
+test3, ----, i, FLOW_METER.UPDATE_TIME, t#5s
+test3, ----, o, FLOW_METER.F, 0.0
+
+test4, ----, i, FLOW_METER.VX, 4.5
+test4, ----, i, FLOW_METER._E, TRUE
+test4, ----, i, FLOW_METER.RST, FALSE
+test4, ----, i, FLOW_METER.PULSE_MODE, TRUE
+test4, ----, i, FLOW_METER.UPDATE_TIME, t#6s
+test4, ----, o, FLOW_METER.F, 0.0

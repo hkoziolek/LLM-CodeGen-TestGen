@@ -1,0 +1,16 @@
+Ticks, #TotalTests, #TestsSuccessful
+Tick 1, 3, 0
+Tick 2, 6, 0
+0,0: TestBlock._CRC_GEN = STRING_TO_DWORD('0x6FC1025C')  actual=0.000000
+1,0: TestBlock._CRC_GEN = STRING_TO_DWORD('0x0')  actual=0.000000
+2,0: TestBlock._CRC_GEN = STRING_TO_DWORD('0x6FC1025C')  actual=0.000000
+Tick 3, 9, 3
+Tick 4, 9, 3
+Tick 5, 9, 3
+Tick 6, 9, 3
+Tick 7, 9, 3
+Tick 8, 9, 3
+Tick 9, 9, 3
+Tick 10, 9, 3
+Program ended.
+Statement coverage for CRC_GEN: 98.93617021276596%
