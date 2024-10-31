@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "llm-codegen-testgen"
+name = "Test_Case_Generator"
 version = "0.1.0"
 description = "A project to generate and run test cases for IEC 61131-3 programs."
 authors = ["Heiko Koziolek <heiko.koziolek@de.abb.com>"]
