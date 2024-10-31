@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "llm-codegen-testgen"
+version = "0.1.0"
+description = "A project to generate and run test cases for IEC 61131-3 programs."
+authors = ["Heiko Koziolek <heiko.koziolek@de.abb.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+langchain-core = "^0.3.14"
+langchain-community = "^0.3.4"
+langchain-openai = "^0.2.4"
+langchain = "^0.3.6"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

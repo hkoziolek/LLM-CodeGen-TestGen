@@ -56,7 +56,7 @@ class Test_Case_Generator:
         USING_OSCAT = True   # flag for OSCAT specific dependancy handling
 
         # Input files (must be available)
-        program_to_test = "Tests/CRC_GEN.st" # code to test
+        program_to_test = "Tests/DEC_TO_HEX.st" # code to test
         program_template = "Tests/template.st" # contains the program task configuration
         program_includes = "Tests/INCLUDE.st" # contains the includes for the OSCAT library
 
